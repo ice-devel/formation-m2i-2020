@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Les tableaux</title>
+
+    <!-- inclusion du css de bootstrap 4 directement depuis internet -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: 1px solid black;
+            padding: 5px;
+            color:green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Les tableaux : présenter des données</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>Toto</td>
+                <td>Dupond</td>
+                <td>30</td>
+            </tr>
+
+            <tr>
+                <td>JeanMichJeanMichJeanMichJeanMichJeanMich</td>
+                <td>Dupont</td>
+                <td>45</td>
+            </tr>
+
+            <tr>
+                <td>Test</td>
+                <td>Nom de famille très long</td>
+                <td>18</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
