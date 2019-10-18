@@ -168,16 +168,124 @@
         Ecrivez les requêtes suivantes :
         <ul>
             <li>Sélectionner tous les joueurs</li>
+            <li>SELECT * FROM player</li>
             <li>Sélectionner tous les joueurs qui habitent à Lille</li>
+            <li>SELECT * FROM player WHERE zipcode = '59000' OR zipcode = '59800'</li>
+            <li>SELECT * FROM player WHERE zipcode IN ('59000', '59800')</li>
+            <li>Sélectionner tous les joueurs qui habitent dans le nord</li>
+            <li>SELECT * FROM player WHERE zipcode LIKE '59%'</li>
             <li>Sélectionner les joueurs qui ont moins de 100points</li>
+            <li>SELECT * FROM player WHERE points < 100</li>
             <li>
                 Sélectionner les joueurs qui habitent à Arras et qui ont plus
                 de 50 points, ou les joueurs qui habitent à Paris et qui ont plus
                 de 100 points
             </li>
+            <li>
+                SELECT * FROM player
+                WHERE zipcode = '62000' AND points > 50 OR zipcode = '75000' AND points > 100
+            </li>
             <li>Mettez à jour tous les joueurs de l'équipe 2 en leur ajoutant 15 points</li>
+            <li>UPDATE player SET points = points + 15 WHERE team = 2</li>
         </ul>
     </div>
+
+    <div>
+        <h2>Trier les résultats : ORDER BY</h2>
+        <p>Obtenir les enregistrements correspondant à la requête,
+        mais triées selon un ou plusieurs colonnes.</p>
+
+        <ul>
+            <li>Sélectionner tous les joueurs triés par nombre de points
+            croissants :</li>
+            <li>SELECT * FROM player ORDER BY points</li>
+            <li>SELECT * FROM player ORDER BY points ASC</li>
+
+            <li>Sélectionner par nombre de points décroissant</li>
+            <li>
+                SELECT * FROM player ORDER BY points DESC
+            </li>
+        </ul>
+
+        <p>
+            On peut trier suivant plusieurs colonnes :
+        </p>
+
+        <ul>
+            <li>
+                Sélectionner tous les joueurs triés par ville croissant,
+                puis par points décroissant : on aura tous les joueurs d'une ville,
+                avec un tri de celui qui a le plus de points vers le moins,
+                puis ensuite les joueurs d'une autre ville, etc.
+            </li>
+            <li>SELECT * FROM player ORDER BY zipcode ASC, points DESC</li>
+        </ul>
+    </div>
+
+    <div>
+        <h2>Limiter les résultats : LIMIT</h2>
+        <ul>
+            <li>Sélectionner les 3 joueurs qui ont le plus de points</li>
+            <li>SELECT * FROM player ORDER BY points DESC LIMIT 3</li>
+        </ul>
+
+        <ul>
+            <li>Sélectionner du 4em joueur au 10em qui ont le plus de points</li>
+            <li>SELECT * FROM player ORDER BY points DESC LIMIT 3,7</li>
+        </ul>
+    </div>
+
+    <div>
+        <h2>Grouper les résultats / GROUP BY</h2>
+        <ul>
+            <li>Sélectionner la somme des points groupé par ville</li>
+            <li>SELECT zipcode, SUM(points) FROM player GROUP BY zipcode</li>
+        </ul>
+
+        <h2>Mettre des conditions sur un GROUP BY : HAVING</h2>
+        <ul>
+            <li>Avoir le nombre de points groupé par ville, en excluant les villes
+            où il n'y a pas plus de 50 points</li>
+            <li>SELECT SUM(points)
+                FROM player
+                GROUP BY zipcode
+                HAVING SUM(points) > 50
+            </li>
+        </ul>
+
+        <p>
+            Attention : ceci est différent de :<br>
+            SELECT zipcode, SUM(points)
+            FROM player
+            WHERE points > 34
+            GROUP BY zipcode
+
+            <br><br>
+
+            Ici, on demande le nombre de points par ville, en ne comptant que le nombre
+            de points des joueurs qui ont plus de 34 points.
+        </p>
+
+        <p>
+            Dans le WHERE, on met les conditions qui vont
+            s'appliquer pour chacun des enregistrements.<br>
+            Dans le HAVING, on met des conditions qui vont
+            s'appliquer sur un groupement d'enregistrements
+        </p>
+    </div>
+
+<div>
+    <p>
+        Ordre des clauses :<br>
+        SELECT<br>
+        FROM<br>
+        WHERE<br>
+        GROUP BY<br>
+        HAVING<br>
+        ORDER BY<br>
+        LIMIT<br>
+    </p>
+</div>
 
 </body>
 </html>
