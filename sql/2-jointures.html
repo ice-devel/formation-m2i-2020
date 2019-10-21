@@ -99,6 +99,21 @@
     </P>
 
     <p>
+        Pour sélectionner les joueurs et leurs armes, sans les jointures,
+        on doit faire plusieurs requêtes :
+        SELECT * FROM player;
+        Puis pour chacun des joueurs 2 requêtes supplémentaires :
+        SELECT * FROM player_weapon WHERE player_id = 1<br>
+        SELECT * FROM weapon WHERE id IN(1,2)<br>
+    </p>
+
+    <p>
+        SELECT * FROM player
+        LEFT JOIN player_weapon ON player.id = player_weapon.player_id
+        LEFT JOIN weapon ON player_weapon.weapon_id = weapon.id
+    </p>
+
+    <p>
         Exercice :
         Modélisez une base de données pour un site e-commerce :
         - Produits (id, created_at, name, price, is_online)

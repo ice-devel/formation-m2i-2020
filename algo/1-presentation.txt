@@ -1,0 +1,146 @@
+Un algorithme est une suite d'instructions pour résoudre un problème.
+
+Voici quelques algorithmes écrits avec un "pseudo-code" :
+
+PRE-REQUIS:
+	ingredient1: farine
+	ingredient: eau
+	ingredient: sucre
+	
+Algo (suite d'instructions):
+	sortir ingredient1
+	sortir ingredient2
+	sortir ingredient3
+	
+	mélanger ingredient1 avec ingredient : donne preparation_intermediaire
+	mélanger preparation_intermediaire avec ingredient3 : donne preparation_finale
+	
+	préchauffer four
+	placer preparation_finale dans fourcuire preparation_finalesortir preparation_finale : donne plat_final
+	
+	servir plat_final
+FIN ALGO
+
+Variables:
+	chiffre1: entier
+	chiffre2: entier
+	somme: entier
+Algo
+	demander à l'utilisateur le premier chiffre
+	stocker la saisie dans chiffre1
+	
+	demander à l'utilisateur le second chiffre
+	stocker la saisie dans chiffre2
+	
+	additionner chiffre1 avec chiffre2
+	stocker le resultat dans somme
+	
+	afficher somme
+Fin ALGO
+
+La même chose dans un code qui se rapproche d'un langage informatique :
+
+Variables:
+    chiffre1: entier
+    chiffre2: entier
+    produit: entier
+Algo
+    chiffre1 = saisir "Veuillez saisir le premier chiffre"
+    chiffre2 = saisir "Veuillez saisir le second chiffre"
+    produit = chiffre1 * chiffre2
+    afficher produit
+Fin algo
+
+II - Structures conditionnelles:
+IIa - le SI
+Par exemple, afficher est-ce qu'on est majeur ou mineur
+
+Variables:
+    age: entier
+Algo:
+    age = saisir "Quel est ton âge ?"
+
+    si age est inférieur à 18
+        afficher "Vous êtes mineur"
+    sinon
+        afficher "Vous êtes majeur"
+    fin si
+
+    afficher "Fin du programme"
+Fin algo
+
+Un bloc SI permet d'évaluer une condition, et de faire un traitement
+que si elle est vraie, voire de faire un autre traitement si elle est fausse
+
+Exercice 1)
+Ecrire l'algorithme qui demande à l'utilisateur de saisir un chiffre en 1 et 10.
+Si il saisit bien un chiffre en 1 et 10, lui dire qu'il a gagné, sinon lui dire qu'il
+a perdu.
+
+Variables:
+    chiffre: entier
+Algo:
+    chiffre = saisir "Veuillez saisir un chiffre entre 1 et 10"
+
+    // SI chiffre est compris entre 1 et 10
+    SI chiffre >= 1 ET chiffre <= 10
+        afficher "Victoire"
+    SINON
+        afficher "Defaite"
+    FIN SI
+Fin algo
+
+Les variables sont tout simplement des pointeurs (des adresses mémoires)
+vers un espace (de la RAM) où on peut stocker des données temporairement.
+
+Les variables ont un type de données.
+On a les types primitifs :
+    - entier
+    - décimal
+    - chaine de caractères (tout caractère)
+    - booléen (vrai ou faux)
+
+IIb - le SELON
+
+Variables:
+    note: entier
+Algo:
+    note = saisir "Quelle note as-tu eu ?"
+
+    SELON note
+        CAS 0:
+            Afficher "C'est pas très très bien"
+            FIN SELON : break;
+        CAS 5:
+            Afficher "Peut mieux faire"
+            FIN SELON
+        CAS 15:
+            Afficher "bien"
+            FIN SELON
+        CAS 20:
+            Afficher "Bah t'as appris ta leçon normal quoi"
+            FIN SELON
+        DEFAUT:
+            Afficher "Je ne sais pas quoi dire"
+    FIN SELON
+
+    // version SI
+    SI note == 0
+        Afficher "C'est pas très très bien"
+    SINON SI note == 5
+        Afficher "Peut mieux faire"
+    SINON SI note == 15
+        Afficher "bien"
+    SINON0
+        Afficher "Je ne sais pas quoi dire"
+    FIN SI
+FIN ALGO
+
+Exercice 2)
+Ecrire l'algorithme qui affiche le prix d'un ticket de train, en fonction de l'age de l'utilisateur.
+Les tranches :
+    - 0 à 18 : 5€
+    - 18 à 25 : 10€
+    - 25 à 59 : 15
+    - 60+ : 11€
+Vous ne demandez pas l'âge de la personne, mais son année de naissance.
