@@ -131,7 +131,7 @@ Algo:
         Afficher "Peut mieux faire"
     SINON SI note == 15
         Afficher "bien"
-    SINON0
+    SINON
         Afficher "Je ne sais pas quoi dire"
     FIN SI
 FIN ALGO
@@ -139,8 +139,39 @@ FIN ALGO
 Exercice 2)
 Ecrire l'algorithme qui affiche le prix d'un ticket de train, en fonction de l'age de l'utilisateur.
 Les tranches :
-    - 0 à 18 : 5€
+    - 0 à 17 : 5€
     - 18 à 25 : 10€
-    - 25 à 59 : 15
+    - 26 à 59 : 15
     - 60+ : 11€
 Vous ne demandez pas l'âge de la personne, mais son année de naissance.
+
+Variables:
+    anneeNaissance: entier
+    age: entier
+Algo:
+    anneeNaissance = saisir "Veuillez saisir votre année de naissance"
+    age = ANNEE_ACTUELLE() - anneeNaissance
+
+    SI age >= 0 ET age < 18
+        Afficher "5€"
+    SINON SI age >= 18 ET age <= 25
+        Afficher "10€"
+    SINON SI age >= 26 ET age <= 59
+        Afficher "15€"
+    SINON SI age >= 60
+        Afficher "11€"
+    FIN SI
+
+    // version optimisée :
+    SI age < 18
+        Afficher "5€"
+    SINON SI age <= 25
+        Afficher "10€"
+    SINON SI age <= 59
+        Afficher "15€"
+    SINON
+        Afficher "11€"
+    FIN SI
+FIN ALGO
+
+
