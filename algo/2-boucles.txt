@@ -1,0 +1,79 @@
+III - Structures itératives ou les boucles
+
+On utilise les boucles pour répéter plusieurs fois la même instruction.
+
+- POUR : pour répéter une/des instructions avec un nombre d'itération
+- TANT QUE : pour répéter une/des instructions en fonction d'une condition,
+            avec possibilité de ne jamais rentrer dans la boucle
+- REPETER JUSQU'A pour répéter une/des instructions en fonction d'une condition,
+                  avec au moins une itération
+
+POUR i ALLANT DE 0 A 20 PAR PAS DE 1
+    Afficher "Je ne dois pas insulter le prod"
+FIN POUR
+
+nombre = RAND(0, 101)
+TANT QUE nombre < 100
+    nombre = nombre + RAND(0,10)
+FIN TANT QUE
+
+nombre = RAND(0, 101)
+REPETER
+    nombre = nombre + RAND(0,10)
+JUSQU'A nombre > 100
+
+
+Algo
+    // Afficher une table de multiplication sans boucle :
+    Afficher "1 * 3 = 3"
+    Afficher "2 * 3 = 6"
+    Afficher "3 * 3 = 9"
+    Afficher "4 * 3 = 12"
+    Afficher "5 * 3 = 15"
+    Afficher "6 * 3 = 18"
+    Afficher "7 * 3 = 21"
+    Afficher "8 * 3 = 24"
+    Afficher "9 * 3 = 27"
+
+    nombre = saisir "chiffre entre 1 et 9"
+    Afficher "1 * " nombre " = " (1 * nombre)
+    Afficher "2 * " nombre " = " (2 * nombre)
+    Afficher "3 * " nombre " = " (3 * nombre)
+    Afficher "4 * " nombre " = " (4 * nombre)
+    Afficher "5 * " nombre " = " (5 * nombre)
+    Afficher "6 * " nombre " = " (6 * nombre)
+    Afficher "7 * " nombre " = " (7 * nombre)
+    Afficher "8 * " nombre " = " (8 * nombre)
+    Afficher "9 * " nombre " = " (9 * nombre)
+
+    // avec une boucle
+
+    nombre = saisir "chiffre entre 1 et 9"
+    POUR i ALLANT de 1 à 9 PAR PAS de 1
+        Afficher i " * " nombre " = " (i * nombre)
+    FIN POUR
+Fin algo
+
+Algo
+    saisie = saisir "Veuillez saisir un nombre entre 5 et 15"
+
+    TANT QUE saisie < 5 OU saisie > 15
+        Afficher "Perdu"
+        saisie = saisir "Veuillez saisir un nombre entre 5 et 15"
+    FIN TANT QUE
+
+    Afficher "Gagné"
+Fin algo
+
+- Exercice 4)
+Jeu aléatoire : voir fichier Algobox Exercice4-jeu-aleatoire.alg
+
+- Exercice 5)
+Ecrire l'algorithme qui demande à l'utilisateur un nombre entier,
+puis qui calcule la somme des entiers inférieurs + lui-même
+15 : 1 + 2 + 3 + ... + 14 + 15
+
+- Exercice 6)
+Ecrire l'algorithme qui demande à l'utilisateur de saisir 8 chiffres entier
+Puis qui finalement affiche le chiffre le plus petit ayant été saisi ainsi que le plus grand
+
