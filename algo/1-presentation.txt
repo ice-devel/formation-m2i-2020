@@ -174,4 +174,83 @@ Algo:
     FIN SI
 FIN ALGO
 
+Exercice 3)
+Ecrivez l'algorithme qui calcule précisément l'age en fonction
+d'une date complète.
+
+anneeActuelle
+moisActuel
+jourActuel
+
+anneeNaissance
+moisNaissance
+jourNaissance
+
+age = anneeActuelle - anneeNaissance
+age = anneeActuelle - anneeNaissance - 1
+
+je suis né en 2000
+nous sommes en 2019
+
+j'ai 19 ans si le jour de naissance
+est égal ou supérieur au jour actuel
+sinon 18
+
+->
+si le mois actuel est inférieur au mois naissance
+j'ai 18 ans
+
+si le mois actuel est le même :
+    le jour actuel est inférieur : j'ai 18ans
+    le jour actuel est égal ou supérieur : j'ai 19ans
+
+Si le mois actuel est supérieur au mois naissance
+j'ai 19ans
+
+Variables
+
+Algo
+    annneActuelle = 2019
+    moisActuel = 10
+    jourActuel = 22
+
+    anneeNaissance = saisir "Veuillez saisir votre année de naissance"
+    moisNaissance = saisir "Veuillez saisir votre mois de naissance"
+    jourNaissance = saisir "Veuillez saisir votre jour de naissance"
+
+    SI moisActuel < moisNaissance
+        age = anneeActuelle - anneeNaissance - 1
+    SINON SI moisActuel > moisNaissance
+        age = anneeActuelle - anneeNaissance
+    SINON SI moisActuel == moisNaissance
+        SI jourActuel < jourNaissance
+            age = anneeActuelle - anneeNaissance - 1
+        SINON
+            age = anneeActuelle - anneeNaissance
+        FIN SI
+    FIN SI
+
+    // version intermédiaire
+    SI moisActuel > moisNaissance OU moisActuel == moisNaissance ET jourActuel >= jourNaissance
+        age = anneeActuelle - anneeNaissance
+    SINON
+        age = anneeActuelle - anneeNaissance - 1
+    FIN SINON
+
+    // version optimisée
+    // l'age est égal à l'année actuelle moins l'année de naissance
+    age = anneeActuelle - anneeNaissance
+
+    // sauf dans le cas où la date actuelle n'est pas encore arrivée à la date de naissance
+    // dans ce cas il faut enlever 1 à l'age calculé précédement
+    SI (moisActuel < moisNaissance) OU (moisActuel == moisNaissance ET jourActuel < jourNaissance)
+        age = age - 1
+    FIN SI
+
+
+
+
+    Afficher age
+
+Fin Algo
 
