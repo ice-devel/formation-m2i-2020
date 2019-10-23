@@ -73,7 +73,68 @@ Ecrire l'algorithme qui demande à l'utilisateur un nombre entier,
 puis qui calcule la somme des entiers inférieurs + lui-même
 15 : 1 + 2 + 3 + ... + 14 + 15
 
+saisie = 5
+resultat = 1 + 2 + 3 + 4 + 5
+
+resultat = 0
+resultat = resultat + 1
+resultat = resultat + 2
+resultat = resultat + 3
+resultat = resultat + 4
+resultat = resultat + 5
+
+saisie = 6
+resultat = 0 + 1 + 2 + 3 + 4 + 5 + 6
+
+saisie = 15
+resultat = 1 + 2 + 3 + ... + 14 + 15
+
+Variables
+    nombre: entier
+    resultat: entier
+Algo
+    nombre = saisir "Veuillez saisir un nombre entier"
+
+    somme = 0
+    POUR i allant de 1 à nombre PAR PAS de 1
+        somme = somme + i
+        Afficher somme
+    FIN POUR
+Fin Algo
+
 - Exercice 6)
 Ecrire l'algorithme qui demande à l'utilisateur de saisir 8 chiffres entier
 Puis qui finalement affiche le chiffre le plus petit ayant été saisi ainsi que le plus grand
 
+Variables
+    nombre: entier
+    nombreMin: entier
+    nombreMax: entier
+Algo
+    POUR i ALLANT de 1 à 8
+        nombre = saisir "Saisissez le nombre " i
+
+        // initialisation : le premier nombre donné est forcément le plus petit et le plus grand
+        SI i == 1
+            nombreMin = nombre
+            nombreMax = nombre
+        FIN SI
+
+        // pour les itérations suivantes, on regarde si le nouveau nombre saisi
+        // est plus petit que le chiffre précédent, si c'est le cas il devient le nombre le plus petit
+        SI nombre < nombreMin
+            nombreMin = nombre
+        FIN SI
+
+        SI nombre > nombreMax
+            nombreMax = nombre
+        FIN SI
+    FIN POUR
+
+    Afficher nombreMin
+    Afficher nombreMax
+Fin algo
+
+Exercice 7)
+Ecrire l'algorithme qui demande à l'utilisateur de saisir 5 notes.
+Puis affiche la moyenne de ces notes
