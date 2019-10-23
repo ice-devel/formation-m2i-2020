@@ -177,5 +177,16 @@ Fin Algo
 
 Exercice 8)
 Ecrire l'algo qui donne la main à l'utilisateur pour saisir une note
-Puis qui lui redonne la main pour une nouvelle note tant qu'il n'a pas rien
+Puis qui lui redonne la main pour saisir une nouvelle note tant qu'il n'a pas saisit -1
 Ensuite afficher la moyenne de toutes les notes qu'il a saisies
+
+Exercice 9)
+Ecrire l'algorithme suivant :
+Afficher à l'utilisateur
+1- Banane : 1€
+2- Pomme : 0,8€
+3- Abricot : 0,9€
+Puis vous lui donnez la main pour qu'il choisisse les fruits qu'il veut
+acheter grâce à leur numéro. Il peut acheter autant de fruits qu'il veut, on s'arrête
+quand il tape 0.
+Puis vous affichez le prix total ainsi que le nombre de produits achetés
