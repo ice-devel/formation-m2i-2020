@@ -138,3 +138,44 @@ Fin algo
 Exercice 7)
 Ecrire l'algorithme qui demande à l'utilisateur de saisir 5 notes.
 Puis affiche la moyenne de ces notes
+
+Variables
+
+Algo
+
+    // sans boucle, on ferait ceci (donc on va pas faire ceci en vrai)
+    somme = 0
+
+    note = saisir "Note 1"
+    somme = somme + note
+
+    note = saisir "Note 2"
+    somme = somme + note
+
+    note = saisir "Note 3"
+    somme = somme + note
+
+    note = saisir "Note 4"
+    somme = somme + note
+
+    note = saisir "Note 5"
+    somme = somme + note
+
+    moyenne = somme / 5
+    afficher moyenne
+
+    // on va plutôt utiliser une boucle, vu que les mêmes instructions se répètent
+    somme = 0
+    POUR i allant de 1 à 5
+        note = saisir "Note " i
+        somme = somme + note
+    FIN POUR
+
+    moyenne = somme / 5
+    afficher moyenne
+Fin Algo
+
+Exercice 8)
+Ecrire l'algo qui donne la main à l'utilisateur pour saisir une note
+Puis qui lui redonne la main pour une nouvelle note tant qu'il n'a pas rien
+Ensuite afficher la moyenne de toutes les notes qu'il a saisies
