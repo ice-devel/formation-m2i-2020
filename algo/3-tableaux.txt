@@ -4,7 +4,7 @@ on appelle ces valeurs les éléments du tableau.
 
 Par exemple : un tableau tableauVilles peut avoir 4 éléments
 représenté de cette façon. Ces éléments sont accessibles
-grâce à un indice ;
+grâce à un indice :
 
 Indice 0    | Indice 1  | Indice 2  | Indice 3
 Lille       | Arras     | Cambrai   | Valenciennes
