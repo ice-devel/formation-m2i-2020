@@ -57,3 +57,36 @@ On s'arrête quand il saisit -1.
 
 Ensuite vous parcourez ce tableau pour calculer la moyenne
 des notes.
+
+Variables
+    notes: tableau de entier
+    note: entier
+    i: entier
+    somme: entier
+    moyenne: décimal
+Algo
+    // 1ère partie : stocker les différentes notes dans un tableau
+    note = saisir "Veuillez saisir une note"
+    TANT QUE note != -1
+        ajouter note dans notes
+        note = saisir "Note suivante"
+    FIN TANT QUE
+
+    // version avec gestion de l'indice
+    note = saisir "Veuillez saisir une note"
+    i = 0
+    TANT QUE note != -1
+        notes[i] = note
+        i = i + 1
+        note = saisir "Note suivante"
+    FIN TANT QUE
+
+    // 2ème partie : calculer la moyenne
+    somme = 0
+    POUR i ALLANT DE 0 à LONGUEUR(notes) - 1
+        somme = somme + notes[i]
+    FIN POUR
+
+    moyenne = somme / LONGUEUR(notes)
+    afficher moyenne
+Fin algo
