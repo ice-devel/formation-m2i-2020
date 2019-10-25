@@ -1,0 +1,150 @@
+V - Les fonctions
+C'est un algo qui répond à un besoin particulier,
+et qu'on va pouvoir utiliser plusieurs fois dans le code.
+Une fonction peut prendre des paramètres, obligatoires ou facultatifs, et peut retourner une valeur
+
+Exemple :
+
+Variables
+Fonction faireCafe(quantiteEau:entier, quantiteCafe:entier)
+    Chauffe quantiteEau
+    Couler quantiteEau à travers quantiteCafe
+
+    Retourner la verseuse remplie de café chaud
+Fin Fonction
+
+Variables
+Fonction rafraichir()
+    faire tourner hélice
+Fin fonction
+
+Variables
+    reste: décimal
+Fonction distributeur(choix, argent=0)
+    selon choix
+        cas 1
+            SI argent >= 0.45
+                reste = argent - 0.45
+                préparer café
+            SINON
+                afficher "ARGENT"
+            FIN SI
+        CAS 2
+            préparer jus
+        CAS 3
+            préparer cola
+        CAS 4
+            préparer gobelet
+    FIN SELON
+
+    rendre reste
+    retourner la préparation
+Fin fonction
+
+Exemple pseudo-code:
+
+Variables
+    somme:entier
+Fonction additionner(nombre1:entier, nombre2:entier)
+    somme = nombre1 + nombre2
+
+    retourner somme
+Fin fonction
+
+Variables
+    nb1: entier
+    nb2: entier
+    somme: entier
+Algo
+    nb1 = saisir "Veuillez le nombre 1" (5)
+    nb2 = saisir "Veuillez le nombre 2" (10)
+
+    somme = additionner(nb1, nb2)
+    afficher somme
+
+    nb3 = saisir "Veuillez le nombre 3" (15)
+    nb4 = saisir "Veuillez le nombre 4" (13)
+
+    afficher additionner(nb3, nb4)
+
+    SI additionner(4, 9) > 10
+        afficher "Oui c'est supérieur"
+    FIN SI
+Fin algo
+
+Autre exemple :
+
+Variables
+    anneeNaissance: entier
+    moisNaissance: entier
+    jourNaissance: entier
+    dateActuelle: date
+    anneeActuelle: entier
+    moisActuel: entier
+    jourActuel: entier
+    age:entier
+Fonction calculAge(dateNaissance:date)
+    anneeNaissance = year(dateNaissance)
+    moisNaissance = month(dateNaissance)
+    jourNaissance = day(dateNaissance)
+
+    dateActuelle = date()
+    anneeActuelle = year(dateActuelle)
+    moisActuel = month(dateActuelle)
+    jourActuel = day(dateActuelle)
+
+    age = anneeActuelle - anneeNaissance
+
+    SI (moisActuel < moisNaissance) OU (moisActuel == moisNaissance ET jourActuel < jourNaissance)
+        age = age - 1
+    FIN SI
+
+    retourner age
+Fin fonction
+
+Variables
+    age: entier
+Fonction isMajeur(dateNaissance:date)
+    age = calculAge(dateNaissance)
+
+    SI age >= 18
+        retourner vrai
+    SINON
+        retourner faux
+    FIN SI
+Fin majeur
+
+Variables
+    age:entier
+    enfantMajeur: booleén
+Algo
+    dateNaissanceUser = saisir "Saisissez votre de naissance"
+    age = calculAge(dateNaissanceUser)
+    afficher age
+
+    dateNaissanceUser2 = saisir "Saisissez la date de naissance de ta mère"
+    age = calculAge(dateNaissanceUser2)
+    afficher age
+
+    dateNaissanceUser3 = saisir "Saisissez la date de naissance de ton enfant"
+    enfantMajeur = isMajeur(dateNaissanceUser3)
+
+    SI enfantMajeur == vrai
+        afficher "Votre enfant est majeur"
+    SINON
+        afficher "Votre enfant est mineur"
+    FIN SI
+
+    SI isMajeur(dateNaissanceUser3) == vrai
+        afficher "Votre enfant est majeur"
+    SINON
+        afficher "Votre enfant est mineur"
+    FIN SI
+Fin algo
+
+Exercice 12)
+Ecrire :
+    - la fonction qui renvoie la valeur la plus petite se trouvant dans un tableau
+    - l'algorithme qui rempli un tableau avec 3 valeurs manuellement
+    puis qui affiche la valeur la plus petite
+
