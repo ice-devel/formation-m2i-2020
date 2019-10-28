@@ -1,0 +1,248 @@
+III - Structures itératives ou les boucles
+
+On utilise les boucles pour répéter plusieurs fois la même instruction.
+
+- POUR : pour répéter une/des instructions avec un nombre d'itération
+- TANT QUE : pour répéter une/des instructions en fonction d'une condition,
+            avec possibilité de ne jamais rentrer dans la boucle
+- REPETER JUSQU'A pour répéter une/des instructions en fonction d'une condition,
+                  avec au moins une itération
+
+POUR i ALLANT DE 0 A 20 PAR PAS DE 1
+    Afficher "Je ne dois pas insulter le prod"
+FIN POUR
+
+nombre = RAND(0, 101)
+TANT QUE nombre < 100
+    nombre = nombre + RAND(0,10)
+FIN TANT QUE
+
+nombre = RAND(0, 101)
+REPETER
+    nombre = nombre + RAND(0,10)
+JUSQU'A nombre > 100
+
+
+Algo
+    // Afficher une table de multiplication sans boucle :
+    Afficher "1 * 3 = 3"
+    Afficher "2 * 3 = 6"
+    Afficher "3 * 3 = 9"
+    Afficher "4 * 3 = 12"
+    Afficher "5 * 3 = 15"
+    Afficher "6 * 3 = 18"
+    Afficher "7 * 3 = 21"
+    Afficher "8 * 3 = 24"
+    Afficher "9 * 3 = 27"
+
+    nombre = saisir "chiffre entre 1 et 9"
+    Afficher "1 * " nombre " = " (1 * nombre)
+    Afficher "2 * " nombre " = " (2 * nombre)
+    Afficher "3 * " nombre " = " (3 * nombre)
+    Afficher "4 * " nombre " = " (4 * nombre)
+    Afficher "5 * " nombre " = " (5 * nombre)
+    Afficher "6 * " nombre " = " (6 * nombre)
+    Afficher "7 * " nombre " = " (7 * nombre)
+    Afficher "8 * " nombre " = " (8 * nombre)
+    Afficher "9 * " nombre " = " (9 * nombre)
+
+    // avec une boucle
+
+    nombre = saisir "chiffre entre 1 et 9"
+    POUR i ALLANT de 1 à 9 PAR PAS de 1
+        Afficher i " * " nombre " = " (i * nombre)
+    FIN POUR
+Fin algo
+
+Algo
+    saisie = saisir "Veuillez saisir un nombre entre 5 et 15"
+
+    TANT QUE saisie < 5 OU saisie > 15
+        Afficher "Perdu"
+        saisie = saisir "Veuillez saisir un nombre entre 5 et 15"
+    FIN TANT QUE
+
+    Afficher "Gagné"
+Fin algo
+
+- Exercice 4)
+Jeu aléatoire : voir fichier Algobox Exercice4-jeu-aleatoire.alg
+
+- Exercice 5)
+Ecrire l'algorithme qui demande à l'utilisateur un nombre entier,
+puis qui calcule la somme des entiers inférieurs + lui-même
+15 : 1 + 2 + 3 + ... + 14 + 15
+
+saisie = 5
+resultat = 1 + 2 + 3 + 4 + 5
+
+resultat = 0
+resultat = resultat + 1
+resultat = resultat + 2
+resultat = resultat + 3
+resultat = resultat + 4
+resultat = resultat + 5
+
+saisie = 6
+resultat = 0 + 1 + 2 + 3 + 4 + 5 + 6
+
+saisie = 15
+resultat = 1 + 2 + 3 + ... + 14 + 15
+
+Variables
+    nombre: entier
+    resultat: entier
+Algo
+    nombre = saisir "Veuillez saisir un nombre entier"
+
+    somme = 0
+    POUR i allant de 1 à nombre PAR PAS de 1
+        somme = somme + i
+        Afficher somme
+    FIN POUR
+Fin Algo
+
+- Exercice 6)
+Ecrire l'algorithme qui demande à l'utilisateur de saisir 8 chiffres entier
+Puis qui finalement affiche le chiffre le plus petit ayant été saisi ainsi que le plus grand
+
+Variables
+    nombre: entier
+    nombreMin: entier
+    nombreMax: entier
+Algo
+    POUR i ALLANT de 1 à 8
+        nombre = saisir "Saisissez le nombre " i
+
+        // initialisation : le premier nombre donné est forcément le plus petit et le plus grand
+        SI i == 1
+            nombreMin = nombre
+            nombreMax = nombre
+        FIN SI
+
+        // pour les itérations suivantes, on regarde si le nouveau nombre saisi
+        // est plus petit que le chiffre précédent, si c'est le cas il devient le nombre le plus petit
+        SI nombre < nombreMin
+            nombreMin = nombre
+        FIN SI
+
+        SI nombre > nombreMax
+            nombreMax = nombre
+        FIN SI
+    FIN POUR
+
+    Afficher nombreMin
+    Afficher nombreMax
+Fin algo
+
+Exercice 7)
+Ecrire l'algorithme qui demande à l'utilisateur de saisir 5 notes.
+Puis affiche la moyenne de ces notes
+
+Variables
+
+Algo
+
+    // sans boucle, on ferait ceci (donc on va pas faire ceci en vrai)
+    somme = 0
+
+    note = saisir "Note 1"
+    somme = somme + note
+
+    note = saisir "Note 2"
+    somme = somme + note
+
+    note = saisir "Note 3"
+    somme = somme + note
+
+    note = saisir "Note 4"
+    somme = somme + note
+
+    note = saisir "Note 5"
+    somme = somme + note
+
+    moyenne = somme / 5
+    afficher moyenne
+
+    // on va plutôt utiliser une boucle, vu que les mêmes instructions se répètent
+    somme = 0
+    POUR i allant de 1 à 5
+        note = saisir "Note " i
+        somme = somme + note
+    FIN POUR
+
+    moyenne = somme / 5
+    afficher moyenne
+Fin Algo
+
+Exercice 8)
+Ecrire l'algo qui donne la main à l'utilisateur pour saisir une note
+Puis qui lui redonne la main pour saisir une nouvelle note tant qu'il n'a pas saisit -1
+Ensuite afficher la moyenne de toutes les notes qu'il a saisies
+
+Variables
+    note: entier
+    somme: entier
+    moyenne: entier
+    nbNotes: entier
+Algo
+    somme = 0
+    note = 0
+    nbNotes = 0
+
+    note = saisir "Note"
+    TANT QUE note != -1
+        somme = somme + note
+        nbNotes = nbNotes + 1
+        note = saisir "Ok pris en compte. Nouvelle note"
+    FIN TANT QUE
+
+    moyenne = somme / nbNotes
+Fin Algo
+
+Exercice 9)
+Ecrire l'algorithme suivant :
+Afficher à l'utilisateur
+1- Banane : 1€
+2- Pomme : 0,8€
+3- Abricot : 0,9€
+Puis vous lui donnez la main pour qu'il choisisse les fruits qu'il veut
+acheter grâce à leur numéro. Il peut acheter autant de fruits qu'il veut,
+on s'arrête quand il tape 0.
+Puis vous affichez le prix total ainsi que le nombre de produits achetés
+
+Variables
+    numeroFruit: entier
+    prixTotal: décimal
+    nbFruits: entier
+Algo
+    Afficher "1- Banane : 1€"
+    Afficher "2- Pomme : 0,8€"
+    Afficher "3- Abricot : 0,9€"
+
+    prixTotal = 0
+    nbFruits = 0
+    nbBananes = 0
+    nbPommes = 0
+    nbAbricots = 0
+
+    numeroFruit = saisir "Quel fruit souhaitez-vous agréablement manger ?"
+    TANT QUE numeroFruit != 0
+        SI numeroFruit == 1
+            prixTotal = prixTotal + 1
+            nbBananes = nbBanane + 1
+        SINON SI numeroFruit == 2
+            prixTotal = prixTotal + 0.8
+            nbPommes = nbPommes + 1
+        SINON
+            prixTotal = prixTotal + 0.9
+            nbAbricots = nbAbricots + 1
+        FIN SI
+        nbFruits = nbFruits + 1
+
+        numeroFruit = saisir "Quel autre fruit pourrait vous détendre ?"
+    FIN TANT QUE
+
+    Afficher prixTotal
+    Afficher nbFruits
+Fin Algo

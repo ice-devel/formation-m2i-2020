@@ -1,0 +1,188 @@
+IV - Les tableaux
+Un tableau c'est un type de variable, qui contient des valeurs :
+on appelle ces valeurs les éléments du tableau.
+
+Par exemple : un tableau tableauVilles peut avoir 4 éléments
+représenté de cette façon. Ces éléments sont accessibles
+grâce à un indice :
+
+Indice 0    | Indice 1  | Indice 2  | Indice 3
+Lille       | Arras     | Cambrai   | Valenciennes
+
+Afficher tableauVilles[0] : afficher "Lille"
+
+Exemple :
+
+Variables
+    tableauAnnees: tableau/liste de entier
+Algo
+    // ajouter un élément dans le tableau en dernière position
+    ajouter 2000 dans tableauAnnees
+    ajouter 2019 dans tableauAnnees
+
+    // afficher un élément du tableau grâce à son indice
+    afficher tableauAnnees[1] // affiche 2019
+    afficher tableauAnnees[1] // affiche 2019
+    afficher tableauAnnees[0] // affiche 2000
+
+    SI tableauAnnees[1] == 2019
+
+    FIN ALORS
+
+    // modifier une valeur à un indice particulier
+    tableauAnnees[1] = 2020 // modifie 2019 par 2020
+    afficher tableauAnnees[1] // affiche 2020
+
+    ajouter 2015 dans tableauAnnees
+
+    afficher tableauAnnees[0]
+    afficher tableauAnnees[1]
+    afficher tableauAnnees[2]
+
+    POUR i ALLANT de 0 à 2
+        afficher tableauAnnees[i]
+    FIN POUR
+
+    ajouter 2010 dans tableauAnnees
+
+    POUR i ALLANT de 0 à Longueur(tableauAnnees) - 1
+        afficher tableauAnnees[i]
+    FIN POUR
+Fin Algo
+
+Exercice 10)
+Ecrire l'algorithme qui demande à l'utilisateur de saisir
+des notes, pour les stocker dans un tableau.
+On s'arrête quand il saisit -1.
+
+Ensuite vous parcourez ce tableau pour calculer la moyenne
+des notes.
+
+Variables
+    notes: tableau de entier
+    note: entier
+    i: entier
+    somme: entier
+    moyenne: décimal
+Algo
+    // 1ère partie : stocker les différentes notes dans un tableau
+    note = saisir "Veuillez saisir une note"
+    TANT QUE note != -1
+        ajouter note dans notes
+        note = saisir "Note suivante"
+    FIN TANT QUE
+
+    // version avec gestion de l'indice
+    note = saisir "Veuillez saisir une note"
+    i = 0
+    TANT QUE note != -1
+        notes[i] = note
+        i = i + 1
+        note = saisir "Note suivante"
+    FIN TANT QUE
+
+    // 2ème partie : calculer la moyenne
+    somme = 0
+    POUR i ALLANT DE 0 à LONGUEUR(notes) - 1
+        somme = somme + notes[i]
+    FIN POUR
+
+    moyenne = somme / LONGUEUR(notes)
+    afficher moyenne
+Fin algo
+
+
+Remarque :
+Dans la plupart des langages haut niveau, les chaines de caractères peuvent
+en partie se comporter des tableaux : des tableaux de caractères.
+Par exemple, la chaine "bonjour" peut $etre utilisée
+comme un tableau de caractère et on peut accéder à chaque lettre grâce à un indice.
+
+nom = "torto"
+afficher nom // affiche torto
+afficher nom[1] // affiche o
+
+nom = nom concaténer avec "z"
+chaine = "toto" concaténer avec "prout" concaténer avec "lille"
+
+Exercice 11)
+Demander à l'utilisateur de saisir un mot
+Ecrire l'algo qui vérifie si ce mot est un palindrome
+
+kayak oui
+ressasser oui
+prout non
+
+i = ?
+
+5 lettres : 2
+0 4
+1 3
+2 2
+3 tours
+
+9 lettres : 5
+0 8
+1 7
+2 6
+3 4
+5 5
+
+9 / 2  = 5 >= 5
+5 tours
+
+4 lettres : 1
+caca
+0 3
+1 2
+
+2 tour
+
+SI isPalindrome == 1
+    afficher "palindrome"
+SINON
+    afficher "ce n'est pas un palindrome"
+
+
+Correction 1)
+
+Variables
+
+Algo
+    mot = "bonjour"
+    i = 0
+    longueurChaine = LONGUEUR(mot) - 1
+    isPalindrome = VRAI
+    nbTourMax = ARRONDIR_SUPERIEUR(LONGUEUR(mot) / 2)
+
+    TANT QUE nbTourMax > i ET isPalindrome == VRAI
+        SI mot[i] != mot[longueurChaine - i]
+            isPalindrome = FAUX
+        FIN SI
+        i = i + 1
+    FIN TANT QUE
+
+    SI isPalindrome == vrai
+
+    SINON
+
+    FIN SI
+Fin algo
+
+Correction 2)
+Variables
+
+Algo
+    mot = "Bonjour"
+    nouveauMot = ""
+
+    POUR i ALLANT de 0 à LONGUEUR(mot) - 1
+        nouveauMot = nouveauMot concat mot[LONGUEUR(mot) - 1 - i]
+    FIN POUR
+
+    SI mot == nouveauMot
+
+    SINON
+        // sinon non
+    FIN SI
+Fin algo

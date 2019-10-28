@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Les fonctions SQL - Bases de données</title>
+
+</head>
+<body>
+    <h1>Les fonctions SQL</h1>
+
+    <h2>Fonctions scalaires</h2>
+
+    <p>
+        Les fonctions scalaires réalisent un traitement sur une colonne
+        pour chaque enregistrement retourné par la requête
+    </p>
+
+    <p>
+        Pour les chaines : (liste non exhaustive)
+    </p>
+    <ul>
+        <li>UPPER() : mettre en majuscule</li>
+        <li>LOWER() : mettre en minuscule</li>
+        <li>LENGTH() : retourne la longueur de la chaine (attention aux caractères spéciaux)</li>
+    </ul>
+
+    <p>
+        Pour les nombres :
+    </p>
+
+    <ul>
+        <li>CEIL() : arrondir à l'entier supérieur</li>
+        <li>FLOOR() : arrondir à l'entier inférieur</li>
+        <li>ROUND(d, n) : arrondir à un certain nombre de chiffre après la virgule.<br>
+            Par exemple ROUND(2.45, 1) : 2.5<br>
+            ROUND(3.852, 2) : 3.85
+        </li>
+    </ul>
+
+    <p>
+        Pour les dates :
+    </p>
+
+    <ul>
+        <li>YEAR() : retourne l'année d'un champ date/datetime</li>
+        <li>MONTH()</li>
+        <li>DAY()</li>
+        <li>HOUR()</li>
+        <li>MINUTE()</li>
+        <li>SECOND()</li>
+    </ul>
+
+    <p>
+        Exemple d'utilisation :
+        SELECT id, created_at, UPPER(name), LOWER(name),LENGTH(name), YEAR(created_at), MONTH(created_at), MINUTE(created_at), SECOND(created_at), RAND()
+        FROM `player` ORDER BY `zipcode` ASC
+    </p>
+    <p>
+        Générer un nombre aléatoire : RAND()<br>
+        Par exemple pour récupérer tous les enregistrements dans un ordre aléatoire :<br>
+        SELECT * FROM player ORDER BY RAND()
+    </p>
+
+    <h2>Fonctions d'agrégation</h2>
+    <p>
+        Les fonctions d'agrégation sont utilisées pour obtenir un seul résultat à partir
+        de plusieurs enregistrements. Ces fonctions sont souvent utilisées pour faire des statistiques.
+    </p>
+    <ul>
+        <li>COUNT() : retourne le nombre d'enregistrement dans une table</li>
+        <li>SUM() : retourne la somme des valeurs d'une colonne pour tous les enregistrements sélectionnés</li>
+        <li>AVG() : retourne la moyenne des valeurs d'une colonne pour tous les enregistrements sélectionnés</li>
+        <li>MAX() : retourne la valeur la plus grande des valeurs d'une colonne pour tous les enregistrements sélectionnés</li>
+        <li>MIN() : retourne la valeur la plus petite des valeurs d'une colonne pour tous les enregistrements sélectionnés</li>
+    </ul>
+
+    <p>
+        On peut les utiliser dans un GROUP BY pour obtenir plusieurs résultats groupés sur une colonne.
+        Par exemple, si on veut le nombre de points dse joueurs groupés par ville :<br>
+        SELECT zipcode, SUM(points) FROM player GROUP BY zipcode
+    </p>
+</body>
+</html>

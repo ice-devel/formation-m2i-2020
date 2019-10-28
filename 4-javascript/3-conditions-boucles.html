@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Les structures conditionnelles et itératives</title>
+</head>
+<body>
+    <h1>Les structures conditionnelles et itératives</h1>
+    <p>
+        Les conditions
+        <ul>
+            <li>Si...sinon si...sinon</li>
+            <li>Selon...cas...cas</li>
+        </ul>
+
+        Les boucles
+        <ul>
+            <li>Pour</li>
+            <li>Tant que</li>
+            <li>Répéter jusqu'à</li>
+        </ul>
+    </p>
+
+    <script>
+        // les conditions
+        if (1 == 1) {
+            console.log("1 est égal à 1");
+        }
+        else {
+            console.log("1 n'est pas égal à 1");
+        }
+
+        age = prompt("Veuillez saisir votre age");
+
+        if (age >= 18) {
+            alert("Vous êtes majeur");
+        }
+        else {
+            alert("Vous ne pouvez pas accéder à ce site");
+        }
+
+        if (age < 18) {
+            alert('5€');
+        }
+        else if (age < 25) {
+            alert('10€');
+        }
+        else if (age < 60) {
+            alert('15€');
+        }
+        else {
+            alert('11€');
+        }
+
+        produit = prompt('Quel produit ? (1, 2 ou 3)');
+        switch (produit) {
+            case "1":
+                alert("5€ l'café");
+                break;
+                // break obligatoire pour sortir du switch sinon il fait tous
+                // les "cases" à partir du moment où il est rentré dans l'un d'eux
+            case "2":
+                alert("10€ l'déca");
+                break;
+            case "3":
+                alert("L'gobelet yé gratos");
+                break;
+            default:
+                alert("Po compris ton choix")
+        }
+
+        // boucles
+        // for (pour)
+        for (i = 0; i < 10; i++) {
+            console.log("Itération " + i);
+        }
+
+        // while (tant que)
+        i = 0;
+        while (i < 10) {
+            console.log("Itération while " + i);
+            i++;
+        }
+
+        i = 0;
+        sommeDesRandom = Math.random() * (10 - 1) + 1;
+        while (sommeDesRandom < 100) {
+            sommeDesRandom = sommeDesRandom + Math.random() * (10 - 1) + 1;
+            i++;
+        }
+        console.log(sommeDesRandom + " - Nombre d'itération : " + i);
+
+        // boucle do while (répéter jusqu'à)
+        sommeDesRandom = 0;
+        do {
+            sommeDesRandom = sommeDesRandom + Math.random() * (10 - 1) + 1;
+        } while (sommeDesRandom < 100);
+
+        // utilisation des tableaux
+        tableau = [];
+        tableau2 = [1, "test", 5, true, 5.6, [2, 3, 5]];
+        // tableau2[5][0]
+
+        tableau.push("toto");
+        tableau.push(16);
+        tableau.push("mamie dans les orties");
+
+        for (i = 0; i < tableau.length; i++) {
+            alert(tableau[i]);
+        }
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,258 @@
+Un algorithme est une suite d'instructions pour résoudre un problème.
+
+Voici quelques algorithmes écrits avec un "pseudo-code" :
+
+PRE-REQUIS:
+	ingredient1: farine
+	ingredient: eau
+	ingredient: sucre
+	
+Algo (suite d'instructions):
+	sortir ingredient1
+	sortir ingredient2
+	sortir ingredient3
+	
+	mélanger ingredient1 avec ingredient : donne preparation_intermediaire
+	mélanger preparation_intermediaire avec ingredient3 : donne preparation_finale
+	
+	préchauffer four
+	placer preparation_finale dans fourcuire preparation_finalesortir preparation_finale : donne plat_final
+	
+	servir plat_final
+FIN ALGO
+
+Variables:
+	chiffre1: entier
+	chiffre2: entier
+	somme: entier
+Algo
+	demander à l'utilisateur le premier chiffre
+	stocker la saisie dans chiffre1
+	
+	demander à l'utilisateur le second chiffre
+	stocker la saisie dans chiffre2
+	
+	additionner chiffre1 avec chiffre2
+	stocker le resultat dans somme
+	
+	afficher somme
+Fin ALGO
+
+La même chose dans un code qui se rapproche d'un langage informatique :
+
+Variables:
+    chiffre1: entier
+    chiffre2: entier
+    produit: entier
+Algo
+    chiffre1 = saisir "Veuillez saisir le premier chiffre"
+    chiffre2 = saisir "Veuillez saisir le second chiffre"
+    produit = chiffre1 * chiffre2
+    afficher produit
+Fin algo
+
+II - Structures conditionnelles:
+IIa - le SI
+Par exemple, afficher est-ce qu'on est majeur ou mineur
+
+Variables:
+    age: entier
+Algo:
+    age = saisir "Quel est ton âge ?"
+
+    si age est inférieur à 18
+        afficher "Vous êtes mineur"
+    sinon
+        afficher "Vous êtes majeur"
+    fin si
+
+    afficher "Fin du programme"
+Fin algo
+
+Un bloc SI permet d'évaluer une condition, et de faire un traitement
+que si elle est vraie, voire de faire un autre traitement si elle est fausse
+
+Exercice 1)
+Ecrire l'algorithme qui demande à l'utilisateur de saisir un chiffre en 1 et 10.
+Si il saisit bien un chiffre en 1 et 10, lui dire qu'il a gagné, sinon lui dire qu'il
+a perdu.
+
+Variables:
+    chiffre: entier
+Algo:
+    chiffre = saisir "Veuillez saisir un chiffre entre 1 et 10"
+
+    // SI chiffre est compris entre 1 et 10
+    SI chiffre >= 1 ET chiffre <= 10
+        afficher "Victoire"
+    SINON
+        afficher "Defaite"
+    FIN SI
+Fin algo
+
+Les variables sont tout simplement des pointeurs (des adresses mémoires)
+vers un espace (de la RAM) où on peut stocker des données temporairement.
+
+Les variables ont un type de données.
+On a les types primitifs :
+    - entier
+    - décimal
+    - chaine de caractères (tout caractère)
+    - booléen (vrai ou faux)
+
+IIb - le SELON
+
+Variables:
+    note: entier
+Algo:
+    note = saisir "Quelle note as-tu eu ?"
+
+    SELON note
+        CAS 0:
+            Afficher "C'est pas très très bien"
+            FIN SELON : break;
+        CAS 5:
+            Afficher "Peut mieux faire"
+            FIN SELON
+        CAS 15:
+            Afficher "bien"
+            FIN SELON
+        CAS 20:
+            Afficher "Bah t'as appris ta leçon normal quoi"
+            FIN SELON
+        DEFAUT:
+            Afficher "Je ne sais pas quoi dire"
+    FIN SELON
+
+    // version SI
+    SI note == 0
+        Afficher "C'est pas très très bien"
+    SINON SI note == 5
+        Afficher "Peut mieux faire"
+    SINON SI note == 15
+        Afficher "bien"
+    SINON
+        Afficher "Je ne sais pas quoi dire"
+    FIN SI
+FIN ALGO
+
+Exercice 2)
+Ecrire l'algorithme qui affiche le prix d'un ticket de train, en fonction de l'age de l'utilisateur.
+Les tranches :
+    - 0 à 17 : 5€
+    - 18 à 25 : 10€
+    - 26 à 59 : 15
+    - 60+ : 11€
+Vous ne demandez pas l'âge de la personne, mais son année de naissance.
+
+Variables:
+    anneeNaissance: entier
+    age: entier
+Algo:
+    anneeNaissance = saisir "Veuillez saisir votre année de naissance"
+    age = ANNEE_ACTUELLE() - anneeNaissance
+
+    SI age >= 0 ET age < 18
+        Afficher "5€"
+    SINON SI age >= 18 ET age <= 25
+        Afficher "10€"
+    SINON SI age >= 26 ET age <= 59
+        Afficher "15€"
+    SINON SI age >= 60
+        Afficher "11€"
+    FIN SI
+
+    // version optimisée :
+    SI age < 18
+        Afficher "5€"
+    SINON SI age <= 25
+        Afficher "10€"
+    SINON SI age <= 59
+        Afficher "15€"
+    SINON
+        Afficher "11€"
+    FIN SI
+FIN ALGO
+
+Exercice 3)
+Ecrivez l'algorithme qui calcule précisément l'age en fonction
+d'une date complète.
+
+anneeActuelle
+moisActuel
+jourActuel
+
+anneeNaissance
+moisNaissance
+jourNaissance
+
+age = anneeActuelle - anneeNaissance
+age = anneeActuelle - anneeNaissance - 1
+
+je suis né en 2000
+nous sommes en 2019
+
+j'ai 19 ans si le jour de naissance
+est égal ou supérieur au jour actuel
+sinon 18
+
+->
+si le mois actuel est inférieur au mois naissance
+j'ai 18 ans
+
+si le mois actuel est le même :
+    le jour actuel est inférieur : j'ai 18ans
+    le jour actuel est égal ou supérieur : j'ai 19ans
+
+Si le mois actuel est supérieur au mois naissance
+j'ai 19ans
+
+Variables
+
+Algo
+    annneActuelle = 2019
+    moisActuel = 10
+    jourActuel = 22
+
+    anneeNaissance = saisir "Veuillez saisir votre année de naissance"
+    moisNaissance = saisir "Veuillez saisir votre mois de naissance"
+    jourNaissance = saisir "Veuillez saisir votre jour de naissance"
+
+    SI moisActuel < moisNaissance
+        age = anneeActuelle - anneeNaissance - 1
+    SINON SI moisActuel > moisNaissance
+        age = anneeActuelle - anneeNaissance
+    SINON SI moisActuel == moisNaissance
+        SI jourActuel < jourNaissance
+            age = anneeActuelle - anneeNaissance - 1
+        SINON
+            age = anneeActuelle - anneeNaissance
+        FIN SI
+    FIN SI
+
+    // version intermédiaire
+    SI moisActuel > moisNaissance OU moisActuel == moisNaissance ET jourActuel >= jourNaissance
+        age = anneeActuelle - anneeNaissance
+    SINON
+        age = anneeActuelle - anneeNaissance - 1
+    FIN SINON
+
+    // version optimisée
+    // l'age est égal à l'année actuelle moins l'année de naissance
+    age = anneeActuelle - anneeNaissance
+
+    // sauf dans le cas où la date actuelle n'est pas encore arrivée à la date de naissance
+    // dans ce cas il faut enlever 1 à l'age calculé précédement
+    SI (moisActuel < moisNaissance) OU (moisActuel == moisNaissance ET jourActuel < jourNaissance)
+        age = age - 1
+    FIN SI
+
+
+
+
+    Afficher age
+
+Fin Algo
+
+
+SI VRAI

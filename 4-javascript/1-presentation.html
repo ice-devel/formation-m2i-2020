@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Présentation javascript</title>
+
+</head>
+<body>
+    <h1>Présentation</h1>
+    <p>
+        Javascript : Langage client (même si aujourd'hui, il y a d'autres utilisations)
+        C'est-à-dire que, comme le html et le css, c'est le navigateur qui
+        lire et exécuter le code Javascript.
+    </p>
+
+    <img src="https://user.oc-static.com/files/292001_293000/292939.png" />
+
+    <!--
+        Le javascript : on mettra ce code en fin de body
+        pour que le html/css soit affiché par le navigateur
+        sans être bloqué par le chargement du javascript
+    -->
+    <script type="text/javascript">
+        // affiche un message dans une popin dans le navigateur
+        /*
+            Commentaire
+            de
+            bloc
+         */
+        alert("Coucou");
+        // affiche un message dans la console du navigateur
+        console.log("salut");
+
+        let mot;
+        mot = "test 12";
+        console.log(mot);
+        mot = "bonjour toi";
+        console.log("valeur mot : " + mot);
+    </script>
+</body>
+</html>

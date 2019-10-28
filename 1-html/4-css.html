@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS</title>
+
+    <!-- feuille de style : la balise <style> permet
+     d'écrire du CSS -->
+    <style>
+        /* sélection par id */
+        #texte1 {
+            color: #FF0921;
+        }
+
+        /* sélection par classe */
+        .underline {
+            text-decoration: underline;
+        }
+        .bold {
+            font-weight:bold;
+        }
+
+        /* sélection par tag */
+        span {
+            font-size: 1.2em;
+        }
+    </style>
+
+    <!-- inclure un fichier css : balise link -->
+    <link href="style.css" rel="stylesheet"/>
+</head>
+
+<body>
+    <h1>Appliquer du style sur les éléments HTML</h1>
+
+    <ul>
+        <li>
+            CSS via des feuilles de style externe :
+            méthode à préférer (plus propre et réutilisable
+            dans plusieurs pages
+        </li>
+        <li>CSS en-ligne : directement dans les balises html</li>
+    </ul>
+
+    <h2>Cibler un élément HTML</h2>
+    <ul>
+        <li>par id : # (sélection d'un seul élément, un id doit être unique)</li>
+        <li>par classe : . (sélection d'un ou plusieurs éléments)</li>
+        <li>par tag (par nom de balise)</li>
+    </ul>
+
+    <h2>Priorité des sélecteurs</h2>
+    <ul>
+        <li>
+            Les feuilles de style sont lues de haut en bas :
+            les derniers styles prennent le dessus sur les styles précédents
+            si les mêmes propriétés sont utilisées à nouveau
+        </li>
+
+        <li>
+            Il n'y a pas de priorité entre plusieurs blocs de style, si les sélecteurs
+            utilisés sont les mêmes (le dernier prend le dessus)
+        </li>
+
+        <li>
+            En revanche, il y a des priorités entre plusieurs types de sélecteur différents.
+            Ce n'est donc pas forcément le dernier style déclaré qui est appliqué :
+            !important > style "en-ligne" > sélecteur ID >
+            sélecteur classe > sélecteur tag
+        </li>
+    </ul>
+
+
+    <span id="texte1">Texte 1</span>
+    <span class="underline">Texte 2</span>
+    <span class="underline bold">Texte 3</span>
+
+    <p>
+        Mon paragraphe <span>n°1</span>
+    </p>
+
+    <div id="container">
+        <span>
+            <a href="" class="blue">Lien vers rien</a>
+        </span>
+    </div>
+
+    <p>Paragraphe 2</p>
+    <p class="coucou">Paragraphe 3</p>
+    <p id="last_paragraphe" class="coucou">Paragraphe 4</p>
+
+    <div id="div_orange" style="border:1px solid orange;color:orange;">
+        Contenu du dernier div, style mis "en-ligne"
+    </div>
+</body>
+</html>

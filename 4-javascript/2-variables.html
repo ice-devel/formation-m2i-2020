@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Les variables javascripts</title>
+</head>
+<body>
+    <h1>Les variables</h1>
+    <p>
+        Types de variables primitifs
+        <ul>
+            <li>Chaines : string</li>
+            <li>Nombre : number</li>
+            <li>Booléen : boolean</li>
+        </ul>
+    </p>
+
+    <script>
+        // nom de variables : lettres, chiffres, _ et $
+        // sensibles à la casse et pas de mots-clés réservés
+
+        // chaine / string
+        premierMot = "bonjour";
+
+        // number : pas de guillemet
+        nombre = 66;
+        decimal = 66.5;
+
+        // booléen / boolean
+        isQuelquechose = false;
+        isQuelquechose = true;
+
+        console.log(premierMot);
+        console.log(nombre);
+        console.log(decimal);
+        console.log(isQuelquechose);
+
+        // obtenir le type d'une variable par le code : typeof
+        console.log(typeof premierMot); // retourne string
+        console.log(typeof nombre); // retourne number
+        console.log(typeof decimal); // retourne number
+        console.log(typeof isQuelquechose); // retourne boolean
+        console.log(typeof coucou);  // retourne undefined
+
+        // opération arithmétique : + - / * et les ()
+        somme = 10 + 6 + 80 + nombre + decimal;
+        console.log(somme); // donne 228.5
+        operation = 50 / 2 - 6 * 50 + nombre;
+        operation = (50 / 2) - (6 * 50) + nombre;
+        console.log(operation);
+
+        // opération en écriture simplifié
+        addition = 15 + 5;
+
+        // ces deux lignes font exactement la même chose
+        addition = addition + 4;
+        addition += 4;
+        addition -= 3;
+        addition *= 2;
+        addition /= 4;
+
+        i = 0;
+        i++; // i = i + 1
+        i--; // i = i - 1
+
+        // chaine : la concatenation
+        premiereChaine = "bonjour";
+        deuxiemeChaine = "toto";
+        chaineConcatenee = premiereChaine + " " + deuxiemeChaine;
+        console.log(chaineConcatenee);
+
+        // l'une des deux parties à côté du "+" est une chaine
+        // donc ce n'est pas une addition qui sera faite entre 5 et 6
+        // c'est une concaténation qui donnera la chaine "56"
+        console.log("5" + 6)
+
+        // intéragir avec l'utilisateur pour lui demander une valeur
+        age = prompt("Veuillez saisir votre âge");
+        console.log("Votre age : " + age);
+
+        // conversion de type
+        // transformer une chaine en number
+        age = parseInt(age);
+
+        calcul = 18 + age;
+        console.log(calcul);
+
+        // transformer un entier en chaine
+        age = age.toString();
+        calcul2 = age + 18 + 18;
+        console.log(calcul2);
+        calcul2 = age + (18 + 18);
+        console.log(calcul2);
+        calcul2 = 18 + 18 + age;
+        console.log(calcul2);
+    </script>
+</body>
+</html>
