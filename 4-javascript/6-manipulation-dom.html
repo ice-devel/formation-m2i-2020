@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM javascript</title>
+    <style>
+        h1 {
+            color: red;
+        }
+
+        h2 {
+            color: green;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        #title2 {
+            text-decoration: underline;
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="main_title" class="title" style="">Javascript : manipulation du dom</h1>
+    <h2>Premier H2</h2>
+    <h2 id="title2" class="italic">2éme H2</h2>
+    <h2 class="italic">3éme H2</h2>
+
+    <script>
+        mainH2 = document.querySelector("#title2");
+        console.log(mainH2);
+        mainH2.innerHTML = "2éme H2 - Modifié";
+        mainH2.style.color = "#454545";
+        mainH2.style.fontSize = "18px";
+
+        // anciens sélecteurs
+        div = document.getElementById('idElement');
+        h2s = document.getElementsByClassName('italic');
+        divs = document.getElementsByTagName('div');
+
+        div = document.querySelector('#idElement');
+        h2Italics = document.querySelectorAll('.italic');
+        divs = document.querySelectorAll('div');
+
+        console.log(h2Italics);
+        h2Italics[1].style.color= "blue";
+
+        // déclencher du code sur des évenements, il faut écouter l'évenement
+        mainH2.addEventListener('click', function() {
+            mainH2.style.color = "yellow";
+        });
+    </script>
+</body>
+</html>

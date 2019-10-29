@@ -74,11 +74,41 @@
             // ici on rentre
         }
 
-        // exercice faite une fonction qui retourne
+        // exercice : faites une fonction qui retourne
         // si une personne est majeure ou mineure (booléen)
         // en prenant un paramètre qui est l'age
         // puis utiliser cette fonction dans le script principal
-        
+        function isOfAge(age) {
+            if (age >= 18) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        howOldAreU = 22;
+        howOldAreU = prompt("Ton âge ?");
+
+        jeSuisMajeur = isOfAge(howOldAreU);
+        if (jeSuisMajeur == true) {
+            console.log("je suis majeur");
+        }
+        else {
+            console.log("je suis mineur");
+        }
+
+        function isOfAge2(age) {
+            return age >= 18;
+        }
+
+        jeSuisMajeur = isOfAge2(25);
+        if (jeSuisMajeur) {
+            console.log("je suis majeur");
+        }
+        else {
+            console.log("je suis mineur");
+        }
     </script>
 </body>
 </html>
