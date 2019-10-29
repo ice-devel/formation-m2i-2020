@@ -10,7 +10,7 @@
         <ul>
             <li>
                 Exercice 1 : demander à l'utilisateur de saisir des notes
-                A chaque fois qu'il saisit, vous la stockez dans un tableau.
+                A chaque fois qu'il saisit une note, vous la stockez dans un tableau.
                 Il finit de saisir les notes en tapant -1.
                 Puis vous affichez toutes les notes du tableau dans la console,
                 en utilisant ce format : "Note n°5 : 17"
@@ -18,12 +18,46 @@
 
             <li>
                 Exercice 2 : écrire l'algo qui nous dit si un mot est un palindrome.
-
             </li>
         </ul>
     </p>
 
     <script>
+        // exercice 1
+        tabNotes = [];
+        note = prompt('Veuillez saisir une note');
+
+        while (note != -1) {
+            tabNotes.push(note);
+            note = prompt('Veuillez saisir une note');
+        }
+
+        for (i=0;i < tabNotes.length;i++) {
+            console.log("Notes n°" + (i + 1) + " : " + tabNotes[i]);
+        }
+
+        // exercice 2)
+        mot = prompt('Mot :');
+        i = 0;
+        longueurChaine = mot.length - 1;
+        isPalindrome = true;
+        nbTourMax = mot.length / 2;
+        nbTourMax = Math.ceil(nbTourMax);
+
+        while (nbTourMax > i && isPalindrome == true) {
+            if (mot[i] != mot[longueurChaine - i]) {
+                isPalindrome = false
+            }
+            i++
+        }
+
+        if (isPalindrome == true) {
+            alert('palindrome')
+        }
+        else {
+            alert('paspalindrome');
+        }
+
     </script>
 </body>
 </html>

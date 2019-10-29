@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Les fonctions javascript</title>
+</head>
+<body>
+    <h1>Les fonctions</h1>
+
+    <script>
+        function isPalindrome(mot) {
+            i = 0;
+            longueurChaine = mot.length - 1;
+            isPalin = true;
+            nbTourMax = mot.length / 2;
+            nbTourMax = Math.ceil(nbTourMax);
+
+            while (nbTourMax > i && isPalin == true) {
+                if (mot[i] != mot[longueurChaine - i]) {
+                    isPalin = false
+                }
+                i++
+            }
+
+            return isPalin;
+        }
+
+        chaine = "coucou";
+        if (isPalindrome(chaine) == true) {
+            alert('palindrome')
+        }
+        else {
+            alert('papalindrome')
+        }
+
+        mot = prompt("mot :")
+        if (isPalindrome(mot) == true) {
+            console.log(mot + " est un palindrome");
+        }
+        else {
+            console.log(mot + " n'est pas un palindrome");
+        }
+
+        function addition(nombre1, nombre2) {
+            somme = nombre1 + nombre2;
+            return somme;
+        }
+
+        console.log(addition(15, 26));
+
+        calcul = addition(30, 45);
+        console.log(calcul);
+
+        nombre50 = 11;
+        nombre51 = 13;
+        somme = addition(nombre50, nombre51);
+        console.log(somme);
+
+        if ("13" == 13) {
+            // les valeurs sont égales
+        }
+
+        // ça c'est pas vrai, le type string n'est pas égal au type number
+        // même si les deux valeurs sont égales
+        if ("13" === 13) {
+
+        }
+
+        if ("13" != 13) {
+            // ici on rentre pas
+        }
+
+        if ("13" !== 13) {
+            // ici on rentre
+        }
+
+        // exercice faite une fonction qui retourne
+        // si une personne est majeure ou mineure (booléen)
+        // en prenant un paramètre qui est l'age
+        // puis utiliser cette fonction dans le script principal
+        
+    </script>
+</body>
+</html>
