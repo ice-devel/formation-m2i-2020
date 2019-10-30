@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event javascript</title>
+</head>
+<body>
+    <h1 id="main_title" class="title" onclick="alert('coucou')"
+    onmouseover="alert('coucou2')">Javascript : les événements</h1>
+
+    <h2 id="le_h2">Cliquez-moi</h2>
+
+    <h3 id="le_h3">Cliquez-moi h3</h3>
+
+    <ul>
+        <li>Ecouteurs en-ligne</li>
+        <li>DOM-0</li>
+        <li>DOM-2</li>
+        <li>Mot-clé this</li>
+    </ul>
+
+    <script>
+        // DOM-0 : une seule fonction pour un événement
+        leH2 = document.querySelector("#le_h2");
+        leH2.onclick = function() {
+            alert('h2');
+
+            leH2.onclick = function() {
+                alert('h2 le deuxième');
+            };
+        };
+
+        // DOM-2 : on peut mettre plusieurs fonctions à déclencher
+        // sur le même événement d'un même élément
+        leH3 = document.querySelector("#le_h3");
+        leH3.addEventListener('click', function() {
+            alert('h3');
+        });
+        leH3.addEventListener('click', function() {
+            leH3.style.color = "#895689";
+        });
+
+        // ou autre écriture : écrire la fonction à part
+        function changeFontSize() {
+            leH3.style.fontSize = "35px";
+        }
+
+        // puis passer à l'écouteur ce nom de fonction
+        leH3.addEventListener('click', changeFontSize);
+
+        // mettre un écouteur sur plusieurs éléments
+        function changeColorLi() {
+            // le "this" représente l'élément html qui a déclenché cet événement
+            this.style.color = "red";
+        }
+
+        lis = document.querySelectorAll("li");
+        for (i=0;i < lis.length;i++) {
+            lis[i].addEventListener('click', changeColorLi);
+        }
+    </script>
+</body>
+</html>
