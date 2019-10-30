@@ -8,7 +8,7 @@
     <h1 id="main_title" class="title" onclick="alert('coucou')"
     onmouseover="alert('coucou2')">Javascript : les événements</h1>
 
-    <h2 id="le_h2">Cliquez-moi</h2>
+    <h2 id="le_h2">Evenements souris (Cliquez-moi)</h2>
 
     <h3 id="le_h3">Cliquez-moi h3</h3>
 
@@ -18,6 +18,30 @@
         <li>DOM-2</li>
         <li>Mot-clé this</li>
     </ul>
+
+    <h2>Evenements  claviers</h2>
+
+    <p>Détecter la saisie dans un champ text (mise en majuscule auto)</p>
+    <form method="get" action="">
+        <input id="input_name" type="text" placeholder="Votre nom" />
+    </form>
+
+    <p>Détecter qu'on touche est pressée sur toute la page :</p>
+    Touche pressée : <span id="span_keyboard"></span>
+
+    <h2>Evenements formulaires</h2>
+
+    <p>Détecter la soumission du formulaire</p>
+
+    <form id="form_inscription" action="">
+        <span id="span_erreur_name" style="color:red;display:none">ERREUR : Veuillez votre nom</span>
+        <input id="input_prout_name" type="text" placeholder="Votre nom" />
+        <input type="submit" />
+    </form>
+
+    <p>On peut vouloir empecher la soumission pour vérifier le format des données
+    avant d'envoyer les données au serveur, ou encore pour gérer nous-mêmes l'envoi
+    des données via une requête ajax.</p>
 
     <script>
         // DOM-0 : une seule fonction pour un événement
@@ -58,6 +82,37 @@
         for (i=0;i < lis.length;i++) {
             lis[i].addEventListener('click', changeColorLi);
         }
+
+        // évenement claviers/formulaires
+
+        // détecter la saisie dans un champ texte
+        inputName = document.querySelector("#input_name");
+        inputName.addEventListener('input', function() {
+            inputName.value = inputName.value.toUpperCase();
+        });
+
+        // détecter qu'on presse une touche partout sur la page
+        document.body.addEventListener('keypress', function(e) {
+           // connaitre la touche pressée : e.key
+           spanKeyboard = document.querySelector("#span_keyboard");
+           spanKeyboard.innerHTML = e.key;
+        });
+
+        proutForm = document.querySelector("#form_inscription");
+        proutForm.addEventListener("submit", function(proutEvent) {
+            inputProutName = document.querySelector("#input_prout_name");
+            if (inputProutName.value == "") {
+                // afficher le message d'erreur correspondant
+                // qu'on a prévu en html (qui est caché par défaut)
+                spanErreurName = document.querySelector("#span_erreur_name");
+                spanErreurName.style.display = "inline";
+                //alert('Veuillez saisir votre nom ! M. Connard');
+
+                // annuler un event : ici on empeche le form de recharger la page
+                proutEvent.preventDefault();
+            }
+        });
+
     </script>
 </body>
 </html>

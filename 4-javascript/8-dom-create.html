@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM : création éléments javascript</title>
+</head>
+<body>
+    <h1>Créer des éléments dynamiquement avec javascript</h1>
+    <div id="container">
+
+    </div>
+
+    <script>
+        // créer l'élément en mémoire
+        newP = document.createElement("p");
+
+        // modifier les propriétés de l'élément
+        newP.innerHTML = "Ceci est un pet dynamiquement créé";
+        newP.classList.add("ma_classe");
+        newP.style.fontSize = "25px";
+
+        // insérer l'élément dans le DOM
+        divContainer = document.querySelector("#container");
+        divContainer.appendChild(newP);
+
+        // créer un autre élément
+        newA = document.createElement('a');
+        newA.href = "http://moncul.fr"
+        newA.innerHTML = "Visiter le site de Moncul";
+        divContainer.appendChild(newA);
+
+        /*
+            Exercice :
+            Dans votre page html, vous créez en HTML un bouton avec le texte
+            "Ajouter un div"
+            En javascript, vous dîtes à ce bouton d'écouter l'évenement click
+            Et vous créez lors du clic sur ce bouton un div dans la page avec
+            les propriétés suivantes :
+            largeur : 30px
+            hauteur : 30px
+            couleur de fond : violet
+            bordure de 1px de couleur verte
+         */
+    </script>
+</body>
+</html>
