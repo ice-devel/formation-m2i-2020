@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Les objets en javascript</title>
+    <style>
+    </style>
+</head>
+<body>
+    <h1>Les objets en javascript</h1>
+
+    <script src="Processor.js"></script>
+    <script>
+        function executeBinaryCode(binaryCode, processorName, processorSpeed) {
+            // on verra
+        }
+        processor1Name = "Ryzen 63001";
+        processor1Speed = 3500;
+        processor1Core = 4;
+        processor1HasIntegratedGraphics = true;
+
+        processor2Name = "Ryzen 100001";
+        processor2Speed = 25000;
+        processor2Core = 16;
+        processor2HasIntegratedGraphics = false;
+
+        executeBinaryCode("00111000100", processor1Name, processor1Speed);
+
+        // version objet
+        // créer une variable de type objet : l'instanciation
+        var processor1 = new Processor();
+        processor1.name = "Ryzen 3600";
+        processor1.core = 8;
+        processor1.hasIntegratedGraphics = false;
+        processor1.speed = 4500;
+        processor1.executeBinaryCode("001101010001110");
+        console.log(processor1);
+
+        var processor2 = new Processor("Intel 9800", 8, 3600, false);
+        console.log(processor2);
+        processor2.executeBinaryCode("0101110010100100");
+
+        // on peut initialiser les propriétés de l'objet en passant des valeurs
+        // dans le constructeur
+        // constructeur : méthode automatiquement appelée dlors de l'instanciation
+        // d'un objet
+        var processor3 = new Processor("Intel 9500", 4, 3500, true);
+
+        // en javascript, il y a des objets natifs, et il y a un pour chaque type
+        // primitif, même si on ne passe par ces objets mais on utilise plutôt
+        // directement les types primitifs
+        var chaine = "Bonjour tout le monde entier";
+        chaine = chaine.toUpperCase();
+        console.log(chaine);
+
+
+        var chaineObjet = new String("Bonjour tout le monde entier");
+        console.log(chaineObjet.toUpperCase());
+
+        number = 42;
+        var numberObjet = new Number("42");
+
+        boolean = true;
+        booleanObjet = new Boolean("true");
+
+        tab = [];
+        tabObjet = new Array();
+
+        objetLitteral = {};
+        objet = new Object();
+    </script>
+</body>
+</html>
