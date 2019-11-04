@@ -47,6 +47,7 @@
 
 
     <div id="container">
+        <div>Calcul en cours :</div>
         <div id="current_operation"></div>
 
         <div id="container_number">
@@ -68,16 +69,25 @@
             <div class="btn" data-value="*">*</div>
             <div class="btn" data-value="/">/</div>
         </div>
+
+        <div>
+            Historique des calculs :
+        </div>
+
+        <div id="history">
+
+        </div>
+
     </div>
-
-    <div id="history">
-
-    </div>
-
 
     <script>
         // I - détecter le clic sur chacun des boutons
         btns = document.querySelectorAll(".btn");
+
+        // si on utilisait un tableau pour stocker les éléments
+        /*
+        elementsCalcul = [];
+        */
 
         function getValue() {
             // récupérer la valeur du "bouton" sur lequel on a cliqué
@@ -90,6 +100,11 @@
             div = document.querySelector("#current_operation");
             // on ajoute à la suite du texte existant le nouveau caractères
             div.innerHTML = div.innerHTML + value;
+
+            // si on utilisait un tableau pour stocker les éléments
+            /*
+            elementsCalcul.push(value);
+            */
         }
 
         for (i=0; i < btns.length;i++) {
@@ -113,11 +128,42 @@
         function calcul() {
             var divCalculEnCours = document.querySelector("#current_operation");
             var calculString = divCalculEnCours.innerHTML;
+            // on peut utiliser la fonction eval : javascript va traduire une chaine en opération mathématique
+            // et nous retourner le resultat de cette opération
             var resultat = eval(calculString);
+
+            /*
+             Autre version avec tableau
+             */
+            /*
+            switch (elementsCalcul[1]) {
+                case "+":
+                    resultat = parseFloat(elementsCalcul[0]) + parseFloat(elementsCalcul[2]);
+                    break;
+                case "-":
+                    resultat = parseFloat(elementsCalcul[0]) - parseFloat(elementsCalcul[2]);
+                    break;
+                case "*":
+                    resultat = parseFloat(elementsCalcul[0]) * parseFloat(elementsCalcul[2]);
+                    break;
+                case "/":
+                    resultat = parseFloat(elementsCalcul[0]) / parseFloat(elementsCalcul[2]);
+                    break;
+            }
+            // reinit le tableau pour prochain calcul
+            elementsCalcul = [];
+            */
 
             // afficher le résultat dans le div "calcul en cours"
             // on remplace son contenu, donc on modifie le innerHTML de cet élément
             divCalculEnCours.innerHTML = resultat;
+
+            // III : afficher le calcul dans la zone d'historique
+            // III a : préparer la chaine du calcul en entier
+            var chaineCalcul = calculString + "=" + resultat;
+            var divHistory = document.querySelector("#history");
+            // III b : on ajoute le nouveau calcul dans le div historique, sans supprimer ceux déjà présents
+            divHistory.innerHTML = divHistory.innerHTML + chaineCalcul + "<br>" ;
         }
     </script>
 
