@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM : création éléments javascript</title>
+    <style>
+        #container {
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        #container_number, #container_operator, #currentOp, #historyOp{
+            display: flex;
+            flex-wrap: wrap;
+
+        }
+
+        .btn, #currentOp, #historyOp {
+            height: 100px;
+            border: 1px solid;
+            margin: 5px;
+            text-align: center;
+            font-size: 2em;
+            cursor: pointer;
+        }
+
+        #container_number .btn {
+            flex: 1 1 80px;
+        }
+
+        #container_operator .btn {
+            flex: 1 1 50px;
+        }
+        #currentOp {
+            width: 300px;
+            margin: 0px auto;
+
+        }
+        #historyOp {
+            width: 300px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Correction calculatrice</h1>
+
+
+    <div id="container">
+        <div id="current_operation"></div>
+
+        <div id="container_number">
+            <div class="btn" data-value="0">0</div>
+            <div class="btn" data-value="1">1</div>
+            <div class="btn" data-value="2">2</div>
+            <div class="btn" data-value="3">3</div>
+            <div class="btn" data-value="4">4</div>
+            <div class="btn" data-value="5">5</div>
+            <div class="btn" data-value="6">6</div>
+            <div class="btn" data-value="7">7</div>
+            <div class="btn" data-value="8">8</div>
+            <div class="btn" data-value="9">9</div>
+        </div>
+
+        <div id="container_operator">
+            <div class="btn" data-value="+">+</div>
+            <div class="btn" data-value="-">-</div>
+            <div class="btn" data-value="*">*</div>
+            <div class="btn" data-value="/">/</div>
+        </div>
+    </div>
+
+    <div id="history">
+
+    </div>
+
+
+    <script>
+        // I - détecter le clic sur chacun des boutons
+        btns = document.querySelectorAll(".btn");
+
+        function getValue() {
+            // récupérer la valeur du "bouton" sur lequel on a cliqué
+            // on a créé un attribut : data-value, dans lequel on a mis la valeur
+            // (on aurait pu passé par exemple par le innerHTML si on savait
+            // qu'il n'y avait que la valeur (le chiffre) dans le html)
+            value = this.getAttribute("data-value");
+
+            // on récupère le div dans lequel on veut ajouter le chiffre
+            div = document.querySelector("#current_operation");
+            // on ajoute à la suite du texte existant le nouveau caractères
+            div.innerHTML = div.innerHTML + value;
+        }
+
+        for (i=0; i < btns.length;i++) {
+            btn = btns[i];
+            btn.addEventListener('click', getValue);
+        }
+
+        // II : faire le calcul
+        // II a : détecter qu'on presse la touche Entrée
+        // body = document.querySelector('body'); // pas utile, il y a un raccourci :
+        body = document.body;
+        body.addEventListener('keypress', function(event) {
+            // faire quelque-chose uniquement si c'est la touche Entrée
+            // qui a été pressée
+            if (event.key == "Enter") {
+                // faire le calcul
+                calcul();
+            }
+        });
+
+        function calcul() {
+            var divCalculEnCours = document.querySelector("#current_operation");
+            var calculString = divCalculEnCours.innerHTML;
+            var resultat = eval(calculString);
+
+            // afficher le résultat dans le div "calcul en cours"
+            // on remplace son contenu, donc on modifie le innerHTML de cet élément
+            divCalculEnCours.innerHTML = resultat;
+        }
+    </script>
+
+
+
+    <p>
+        Codez dans une page web une calculatrice en utilisant le template html fourni. Le template contient une grille de 9 chiffres et 4 opérateurs.
+        <br><br>
+        Vous devez ajouter en html deux éléments manquants :
+        une zone pour afficher le calcul en cours
+        une zone qui afficher l'historique des calculs faits depuis le chargement de la page
+        Vous utilisez le HTML et le style que vous voulez pour ces éléments.
+        <br><br>
+        Puis en javascript :
+        détecter le clic sur chaque élément de la grille
+        trouver un moyen (celui que vous voulez) pour récupérer une valeur pour chaque case de la grille (1, 2, ..., 9, les opérateurs + - / *, bref sur quelle case on a cliqué)
+        il faut afficher dans la zone "calcul en cours", les chiffres sur lequel vous cliquez, les opérateurs, etc. de façon à former un calcul arithmétique
+        ensuite lorsque l'utilisateur appuie sur la touche "entrée" de la page, il faut lancer en javascript le  vrai calcul calcul.
+        <br>Puis :<br>
+        Remplacer l'affichage du calcul dans la zone "calcul en cours" par le vrai résultat de l"opération
+        Vous pouvez donc refaire un nouveau calcul avec ce résultat comme nombre de départ, déjà affiché dans la zone "calcul en cours"
+        <br><br>
+        Ajoutez également l'opération dans la zone "historique des calculs" c'est-à-dire que si l'opération qui vient d'être faite c'est 5 + 5, vous devez afficher dans cette zone : "5 + 5 = 10"
+        On a donc dans cette zone tous les calculs réalisés depuis le chargement de la page
+    </p>
+</body>
+</html>
