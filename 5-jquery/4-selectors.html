@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jquery : sélecteurs</title>
+    <style>
+        div p span {
+
+        }
+    </style>
+</head>
+<body>
+    <h1>Sélecteurs</h1>
+
+    <p id="p1">Paragraphe1</p>
+    <p class="p2">Paragraphe2</p>
+    <p>Paragraphe3</p>
+
+    <p>
+        <span>Span1</span>
+    </p>
+
+
+    <div id="div1">
+        <p>Paragraphe4</p>
+        <p>Paragraphe5</p>
+        <p>Paragraphe6</p>
+        <span>Span2</span>
+    </div>
+
+    <div id="div2">
+        <p>Paragraphe7</p>
+        <p>Paragraphe8</p>
+        <p>
+            Paragraphe9
+            <span>Span3</span>
+        </p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+
+    <script>
+        // sélecteur simple : par identifiant, par classe et par tag
+        var paragraphe1 = $("#p1");
+        var paragraphes2 = $(".p2");
+        var paragraphes3 = $("p");
+
+        // sélectionner des éléments qui sont dans un ou des éléments : l'espace entre des sélecteurs
+        var paragraphesDuDiv1 = $("#div1 p");
+        paragraphesDuDiv1.css("color", "blue");
+
+        var paragraphesDansUnDiv = $("div p");
+        var spansDansUnPDansUnDiv = $("div p span");
+        spansDansUnPDansUnDiv.css("color", "red");
+
+        // la virgule entre plusieurs sélecteurs : un ET
+        var paragraphesDansUnDiv = $("#div1 p, #div2 p");
+
+    </script>
+</body>
+</html>
