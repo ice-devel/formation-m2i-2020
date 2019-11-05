@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Présentation jQuery</title>
+    <style>
+        #container {
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Présentation</h1>
+    <p>
+        jQuery : manipulation dom
+    </p>
+
+    <div id="container" style="">
+        Texte du container
+    </div>
+
+    <p>
+        Paragraphe 1
+    </p>
+
+    <p>
+        Paragraphe 2
+    </p>
+
+    <button class="btn_event_js">Bouton avec event JS</button>
+    <button class="btn_event_js">Bouton avec event JS</button>
+
+    <button class="btn_event_jquery">Bouton avec event jQuery</button>
+    <button class="btn_event_jquery">Bouton avec event jQuery</button>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+
+    <script>
+        // en JS
+        var div = document.querySelector("#container");
+        div.innerHTML = "Nouveau texte du container";
+        div.style.color = "blue";
+        div.style.backgroundColor = "gray";
+        div.classList.add("class_dynamique");
+
+        // plusieurs éléments
+        var ps = document.querySelectorAll("p");
+        for (i=0; i < ps.length;i++) {
+            ps[i].style.color = "green";
+        }
+
+        // en jQuery
+        div = $("#container");
+        div.html("Nouveau texte du container en jQuery");
+        div.css("color", "pink");
+        div.css("background-color", "yellow");
+        div.addClass("class_dynamique_2");
+        div.removeClass("class_dynamique");
+
+        /*
+            plusieurs elements : pas besoin de boucler
+            jquery détecte si on a 0, 1 ou plusieurs éléments
+            et lance la fonction sur chacun d'eux
+        */
+        $("p").css('color', 'purple');
+
+        /*
+         Les événements
+         */
+        // JS
+        var btns = document.querySelectorAll(".btn_event_js");
+        for (i=0; i < btns.length; i++) {
+            btns[i].addEventListener('click', function() { alert('coucou')})
+        }
+
+        // jQuery
+        $(".btn_event_jquery").on('click', function() { alert('coucou2')});
+        // autre possibilité :
+        // $(".btn_event_jquery").click(function() {});
+
+        // on peut boucler sur plusieurs éléments avec une boucle each
+        // afin de faire un traitement différencié en fonction de conditions
+        $("p").each(function(i) {
+            // i est une valeur injectée automatiquement, c'est l'indice de la boucle each
+            if (i <= 1) {
+                $(this).css('border', '1px solid');
+            }
+            else {
+                $(this).css('border', '1px solid green');
+            }
+        });
+    </script>
+</body>
+</html>

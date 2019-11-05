@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Présentation jQuery</title>
+
+</head>
+<body>
+    <h1>Présentation</h1>
+    <p>
+        jQuery : framework javascript
+        <ul>
+            <li></li>
+        </ul>
+    </p>
+
+    <div id="select_js_jquery">
+        Coucou sélectionne moi en js ou jquery
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        // sélection js
+        var divJS = document.querySelector("#select_js_jquery");
+
+        // sélection jQuery
+        var divJquery = $("#select_js_jquery");
+
+        console.log(divJS);
+        console.log(divJquery);
+
+        // modifier contenu en JS
+        divJS.innerHTML = divJS.innerHTML + "<br>Modification du contenu en JS";
+
+        // modifier contenu en jquery
+        divJquery.html(divJquery.html() + "<br>Coucou");
+    </script>
+</body>
+</html>
