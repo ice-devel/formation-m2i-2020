@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jquery : sélecteurs</title>
+    <style>
+        div p span {
+
+        }
+    </style>
+</head>
+<body>
+    <h1>Création / Remplacement / Déplacement</h1>
+
+    <div id="div1"></div>
+
+    <div id="div2">
+
+    </div>
+
+    <div id="div3">
+
+    </div>
+
+    <p>
+        Exercice :
+        Créer en html 4 div avec chacun un id
+        En jquery mettre une couleur de bordure différente pour chacun des divs
+        Créer en html 3 boutons : ajouter - déplacer - remplacer
+            - Quand vous cliquez sur le bouton "ajouter" : il faudra en jQuery ajouter
+        un nouveau div avec une autre couleur de bordure et il faudra le placer après le troisième div
+            - Quand vous cliquez sur le bouton déplacer,
+        vous devez deplacer le premier div pour le mettre en dernière position
+            - Quand vous cliquez sur le bouton remplacer, vous devez remplacer le 4éme div par un image dont vous aurez
+        précisé la source
+    </p>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+
+    <script>
+        /*
+         Ajouter du contenu textuel dans le DOM
+         */
+        var div1 = $("#div1");
+        div1.prepend("prepend");
+        div1.prepend("coucou");
+        div1.append("SalutALaFin");
+        div1.before("juste avant");
+        div1.after("juste après");
+
+        /*
+           insérer un élément
+         */
+
+        $("#div2").prepend("<a href='' alt=''>Texte du lien</a>");
+
+        var a2 = $("<a>");
+        a2.css('color', 'red');
+        a2.attr('href', 'http://moncul.fr');
+        a2.text("<span>Bienvenue sur moncul</span>");
+
+        $("#div3").after(a2);
+
+        // dans l'autre sens
+        $("<p>Pet</p>").prependTo($("#div3"));
+        $("<p>Pet</p>").appendTo($("#div3"));
+        $("<p>Pet</p>").insertBefore($("#div3"));
+        $("<p>Pet</p>").insertAfter($("#div3"));
+
+        // remplacer un ou des éléments par un autre
+        var newImg = $("<img>");
+        newImg.attr('src', 'https://img.lemde.fr/2019/04/22/0/191/1619/1079/688/0/60/0/e39da8d_2FIads9h8wB-0SwSgxVaVWsp.jpg');
+        $("#div3").replaceWith(newImg);
+    </script>
+</body>
+</html>
