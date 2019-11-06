@@ -37,6 +37,26 @@
         </p>
     </div>
 
+    <p data-num="1">
+        Paragraphe 10
+    </p>
+
+    <p id="para11">
+        Paragraphe 11
+    </p>
+
+    <p id="para12">
+        Paragraphe 12
+    </p>
+
+    <p class="parent">
+        <a href="">Lien1</a>
+        <a href="" class="lien">Lien2</a>
+        <span>Span4</span>
+        <a href="">Lien3</a>
+        <span>Span5</span>
+    </p>
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous"></script>
@@ -55,8 +75,76 @@
         var spansDansUnPDansUnDiv = $("div p span");
         spansDansUnPDansUnDiv.css("color", "red");
 
-        // la virgule entre plusieurs sélecteurs : un ET
+        // la virgule entre plusieurs sélecteurs : un ET, on veut les deux
         var paragraphesDansUnDiv = $("#div1 p, #div2 p");
+
+        /*
+        *   Sélecteurs d'attributs
+         */
+        // sélectionner en fonction de la valeur d'un attribut
+        $("[data-num=1]").css("border", "1px solid");
+        // $("#p1"); : $("[id=p1]");
+
+        // sélection des p qui ont un attribut data-num = 1
+        $("p[data-num=1]");
+
+        // sélection des éléments qui ont un attribut data-num = 1 qui ont pour parent un p
+        $("p [data-num=1]");
+
+        // sélection élément dont l'id commence par para
+        $("[id^=para]");
+        // sélection élément dont l'id termine par test
+        $("[id$=test]");
+        // sélection élément dont l'attribut data-value termine par test
+        $("[data-value$=test]");
+        // différent de test
+        $("[data-value!=test]");
+        // contient test
+        $(".blue[data-value*=test]");
+
+        // sélectionner les images JPG : les balises img dont l'attribut src
+        // termine par .jpg (qui est l'extension réservée aux images jpg)
+        $("img[src$='.jpg']");
+
+        // on veut les div qui ont la classe blue et la classe bold en même temps
+        $("div.bold.blue");
+
+
+        /*
+        * Sélecteur hiérarchique
+         */
+        // parent enfant
+        // élément avec id2 dans éléments avec id1 : id1 pas forcément parent direct
+        // mais quelque part au dessus dans l'arboresence
+        $("#id1 #id2");
+
+        // sélectionner un enfant/descendant direct :
+        $("#id1 > #id2");
+
+        $("div > span").html("Span2 : enfant direct d'un div");
+
+        // sélectionner un élément directement précédés par un autre : élément frère
+        // ici sélection des spans directement précédés d'un a avec la classe lien
+        $("a.lien + span").css('text-shadow', 'black 1px 2px 2px')
+        //
+        $("a.lien ~ span").css('text-decoration', 'underline');
+
+        // premier enfant
+        $("p.parent :first-child").css('font-size', '2em');
+
+        // premier élément
+        $("div p:first").css('color', 'purple');
+
+        // dernier enfant
+        $("p.parent :last-child").css('font-size', '2em');
+
+        // dernier élément
+        $("p.parent :last").css('font-size', '2em');
+
+        // sélection par numéro index
+        $("p.parent :nth-child(3)").html("coucou");
+        $("p.parent :even").html("pair");
+        $("p.parent :odd").html("impair");
 
     </script>
 </body>
