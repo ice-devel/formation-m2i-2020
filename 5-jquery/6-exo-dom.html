@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jquery : sélecteurs</title>
+    <style>
+    </style>
+</head>
+<body>
+    <h1>Exo DOM jQuery</h1>
+
+    <div id="div1">Div1</div>
+    <div id="div2">Div2</div>
+    <div id="div3">Div3</div>
+    <div id="div4">Div4</div>
+
+    <button id="ajout">Ajouter</button>
+    <button id="deplace">Déplacer</button>
+    <button id="remplace">Remplacer</button>
+
+    <p>
+        Exercice :
+        Créer en html 4 div avec chacun un id
+        En jquery mettre une couleur de bordure différente pour chacun des divs
+        Créer en html 3 boutons : ajouter - déplacer - remplacer
+        - Quand vous cliquez sur le bouton "ajouter" : il faudra en jQuery
+        ajouter un nouveau div
+        avec une autre couleur de bordure
+        il faudra le placer après le troisième div
+        - Quand vous cliquez sur le bouton déplacer,
+        vous devez deplacer le premier div pour le mettre en dernière position
+        - Quand vous cliquez sur le bouton remplacer, vous devez remplacer le 4éme div par un image dont vous aurez
+        précisé la source
+    </p>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+
+    <script>
+        div1 = $("#div1");
+        div1.css("border", "1px solid red");
+        $("#div2").css("border", '1px solid blue');
+        $("#div3").css("border", '1px solid yellow');
+        $("#div4").css("border", '1px solid purple');
+
+        $("#ajout").on('click', function(e) {
+            // créer un nouveau div
+            var newDiv = $("<div>");
+            // lui mettre une bordure
+            newDiv.css('border', '1px solid pink');
+            newDiv.html("New div");
+            // l'insérer après le div3
+            newDiv.insertAfter($("#div3"));
+        });
+
+        $("#deplace").on("click", function(e) {
+            // déplacer le #div1 après le dernier div de la page
+            $("#div1").insertAfter($("div:last"));
+        });
+
+        $("#remplace").on("click", function() {
+            // créer une img
+            var newImg = $("<img>");
+            // lui donner une source
+            newImg.attr('src', 'https://img.ohmymag.com/article/300/news/test_a960bc833cdcf69928a382385cd943747b0701bb.jpg');
+            // remplacer le #div4 par cette nouvelle image
+            $("#div4").replaceWith(newImg);
+        });
+    </script>
+</body>
+</html>
