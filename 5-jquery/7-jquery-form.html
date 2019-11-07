@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jquery : formulaires</title>
+    <style>
+        form * {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Les formulaires avec jQuery</h1>
+
+    <ul>
+        <li>L'événement submit des forms</li>
+        <li>Obtenir les valeurs des input, select, textarea, checkbox</li>
+        <li>Modifier les valeurs des input, select, etc.</li>
+    </ul>
+
+    <form>
+        <input id="input_name" type="text" placeholder="Votre nom"/>
+        <input id="input_email" type="email" placeholder="Votre email" />
+        <input id="input_age" type="number" placeholder="Votre age" />
+        <input id="input_tel" type="tel" placeholder="Votre tel" />
+        <input id="input_pass" type="password" placeholder="Votre password" />
+
+        <textarea id="textarea_description"  placeholder="Décrivez-vous"></textarea>
+
+        <select id="select_pays" >
+            <option></option>
+            <option value="1">France</option>
+            <option value="2">Belgique</option>
+        </select>
+
+        <input id="chk_reglement" type="checkbox" value="on" /><label>J'accepte le réglement</label>
+
+        <input id="radio_situation_proprio" type="radio" name="situation" value="proprio"/>Propriétaire
+        <input id="radio_situation_locataire" type="radio" name="situation" value="locataire"/>Locataire
+
+        <input type="submit" />
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+
+    <script>
+        // equivalent jquery pour détecter la soumission du formulaire
+        $("form").on('submit', function(event) {
+            /*
+                GET : récupérer les valeurs dans les champs du formulaire
+            */
+            var name = $("#input_name").val();
+            var email = $("#input_email").val();
+            var age = $("#input_age").val();
+            var tel = $("#input_tel").val();
+            var pass = $("#input_pass").val();
+            var description = $("#textarea_description").val();
+            var pays = $("#select_pays").val();
+
+            // pour une case, on veut savoir si elle est cochée (on s'en fout de sa valeur)
+            var reglement = $("#chk_reglement").prop('checked');
+            reglement = $("#chk_reglement").is(':checked');
+
+            // boutons radio : obtenir le radio sélectionner, puis récupérer sa value
+            var btnRadioChecked = $("input[type='radio'][name='situation']:checked");
+            var situation = btnRadioChecked.val();
+
+            if (name == "") {
+                // annuler l'évenement submit : la page ne se rechargera pas
+                // car le formulaire ne sera pas soumis
+            }
+
+            $(this).trigger('reset');
+
+            event.preventDefault();
+        });
+
+        /*
+           SET : changer les valeurs dans les champs du formulaire
+       */
+        $("#input_name").val("Nom par défaut");
+        $("#input_email").val("Email@pardefaut.fr");
+        $("#input_age").val("32");
+        $("#input_tel").val("0688");
+        $("#input_pass").val("salut");
+        $("#textarea_description").val("Jsuis pas cool");
+        $("#select_pays").val("1");
+        $("#chk_reglement").prop("checked", true);
+        $("#radio_situation_locataire").prop('checked', true);
+
+        /*
+            Créer en html un formulaire avec un textarea and a submit
+            Qunad le formulaire est soumis, il faut récupérer la valeur du textarea
+            En jquery à ce moment-là:
+                - créer un div en mémoire
+                - lui mettre une bordure
+                - mettre le commentaire du formulaire dans ce div
+                - insérer le nouveau dans le dom
+                - réinitialiser le formulaire
+         */
+    </script>
+</body>
+</html>

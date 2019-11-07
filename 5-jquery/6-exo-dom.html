@@ -17,6 +17,7 @@
     <button id="ajout">Ajouter</button>
     <button id="deplace">Déplacer</button>
     <button id="remplace">Remplacer</button>
+    <button id="annule">Annuler tous les écouteurs</button>
 
     <p>
         Exercice :
@@ -68,6 +69,20 @@
             // remplacer le #div4 par cette nouvelle image
             $("#div4").replaceWith(newImg);
         });
+
+        // désactiver un écouteur
+
+        // désactiver tous les écouteurs sur le bouton #deplace
+        $("#annule").on('click', function() {
+            $("button").off();
+        });
+
+        // désactiver un seul écouteur/évenement
+        $("#deplace").on('mouseover',function(){alert('survol');});
+        $("#deplace").off('mouseover');
+
+        // écouter un événement une seule fois : one
+        $("#ajout").one('mouseover', function() { alert("button ajout survolé"); })
     </script>
 </body>
 </html>
