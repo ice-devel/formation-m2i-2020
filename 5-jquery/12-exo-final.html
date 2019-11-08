@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jquery : validation formulaires avec plugin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="chosen_v1.8.7/chosen.min.css">
+
+    <style>
+
+    </style>
+</head>
+<body>
+    <h1>Exercice : Jeu</h1>
+
+    <p>
+        Codez avec html/css/javascript/jquery le jeu où il faut cliquer sur
+        une grille pour découvrir des images.<br>
+        Vous devez faire une grille de 4 par 4, et dans chaque case il faut mettre une image.<br>
+        Les image sont cachées, elles apparaissent quand on clique.<br>
+            On joue en cliquant sur deux images<br>
+            - on les fait apparaitre<br>
+            - si elles sont identiques, on les laisse affichées<br>
+            - si elles sont différentes, on les recache<br>
+            - le jeu est terminé quand toutes les images sont affichées<br>
+        <br>
+        Le code :<br>
+            - créer le html : des div avec flex : 4 * 4<br>
+            - jquery : créer une image dans chaque div, en sachant que chaque image doit exister<br>
+                uniquement en double exemplaire
+            - jquery détecter le clic sur les divs et afficher une image, puis une seconde<br>
+            - et lancer une vérification quand deux images sont affichées
+                (puis on les laisse affichées ou on les recache, c'est selon)<br>
+            - compter le nombre d'essai effectués puis afficher à la fin de la partie combien d'essais ont été faits<br>
+        <br>
+        Voir les fonctions :<br>
+        - setTimeout()<br>
+        - fadeIn() et fadeOut() : $(sel).fadeIn()<br>
+    </p>
+</body>
+</html>

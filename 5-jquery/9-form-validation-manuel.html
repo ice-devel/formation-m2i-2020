@@ -5,12 +5,28 @@
     <title>Jquery : validation formulaires</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <style>
-
+        form {
+            display:block;
+            width: 50%;
+            margin: 0 auto;
+        }
+        form * {
+            display:block;
+        }
     </style>
 </head>
 <body>
     <h1>Formulaire : validation avec html5 ou jQuery</h1>
 
+    <form id="form_validate">
+        <input id="input_name" type="text" placeholder="Votre nom" />
+        <input id="input_email" type="text" placeholder="Votre email" />
+        <input id="input_date" type="text" placeholder="Votre date de naissance" />
+
+        <button class="btn waves-effect waves-light" type="submit" name="action">Go
+            <i class="material-icons right"></i>
+        </button>
+    </form>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -19,7 +35,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <script>
+        $("#form_validate").on('submit', function(event) {
+            event.preventDefault();
 
+            var name = $("#input_name").val();
+            var email = $("#input_email").val();
+            var date = $("#input_date").val();
+
+            if (name == "") {
+                alert('Veuillez saisir le nom');
+            }
+
+            if (email == "" || email.match(/.{3,}@.{3,}\..{2,}/) == null) {
+                alert('Veuillez saisir une adresse email valide');
+            }
+
+            if (date != "" && date.match(/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/) == null) {
+                alert('Veuillez saisir une date valide');
+            }
+
+        });
     </script>
 </body>
 </html>

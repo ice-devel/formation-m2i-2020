@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jquery : validation formulaires avec plugin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="chosen_v1.8.7/chosen.min.css">
+
+    <style>
+        form {
+            display:block;
+            width: 50%;
+            margin: 0 auto;
+        }
+        form * {
+            display:block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Formulaire : validation html5/jQuery avec plugin</h1>
+
+    <form id="form_validate">
+        <input id="input_name" type="text" placeholder="Votre nom" required/>
+        <input id="input_email" type="text" placeholder="Votre email" required pattern=".{3,}@.{3,}\..{2,}"/>
+        <input id="input_date" type="text" placeholder="Votre date de naissance" />
+
+        <select>
+            <option>FR</option>
+            <option>EN</option>
+            <option>DE</option>
+            <option>IT</option>
+            <option>ES</option>
+        </select>
+
+        <input type="text" class="jscolor" />
+        <button class="btn waves-effect waves-light" type="submit" name="action">Go
+            <i class="material-icons right"></i>
+        </button>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+    <script src="chosen_v1.8.7/chosen.jquery.min.js"></script>
+    <script src="jscolor-2.0.5/jscolor.js"></script>
+
+    <script>
+        $.extend( $.validator.messages, {
+            required: "Ce champ est obligatoire.",
+            remote: "Veuillez corriger ce champ.",
+            email: "Veuillez fournir une adresse électronique valide.",
+            url: "Veuillez fournir une adresse URL valide.",
+            date: "Veuillez fournir une date valide.",
+            dateISO: "Veuillez fournir une date valide (ISO).",
+            number: "Veuillez fournir un numéro valide.",
+            digits: "Veuillez fournir seulement des chiffres.",
+            creditcard: "Veuillez fournir un numéro de carte de crédit valide.",
+            equalTo: "Veuillez fournir encore la même valeur.",
+            notEqualTo: "Veuillez fournir une valeur différente, les valeurs ne doivent pas être identiques.",
+            extension: "Veuillez fournir une valeur avec une extension valide.",
+            maxlength: $.validator.format( "Veuillez fournir au plus {0} caractères." ),
+            minlength: $.validator.format( "Veuillez fournir au moins {0} caractères." ),
+            rangelength: $.validator.format( "Veuillez fournir une valeur qui contient entre {0} et {1} caractères." ),
+            range: $.validator.format( "Veuillez fournir une valeur entre {0} et {1}." ),
+            max: $.validator.format( "Veuillez fournir une valeur inférieure ou égale à {0}." ),
+            min: $.validator.format( "Veuillez fournir une valeur supérieure ou égale à {0}." ),
+            step: $.validator.format( "Veuillez fournir une valeur multiple de {0}." ),
+            maxWords: $.validator.format( "Veuillez fournir au plus {0} mots." ),
+            minWords: $.validator.format( "Veuillez fournir au moins {0} mots." ),
+            rangeWords: $.validator.format( "Veuillez fournir entre {0} et {1} mots." ),
+            letterswithbasicpunc: "Veuillez fournir seulement des lettres et des signes de ponctuation.",
+            alphanumeric: "Veuillez fournir seulement des lettres, nombres, espaces et soulignages.",
+            lettersonly: "Veuillez fournir seulement des lettres.",
+            nowhitespace: "Veuillez ne pas inscrire d'espaces blancs.",
+            ziprange: "Veuillez fournir un code postal entre 902xx-xxxx et 905-xx-xxxx.",
+            integer: "Veuillez fournir un nombre non décimal qui est positif ou négatif.",
+            vinUS: "Veuillez fournir un numéro d'identification du véhicule (VIN).",
+            dateITA: "Veuillez fournir une date valide.",
+            time: "Veuillez fournir une heure valide entre 00:00 et 23:59.",
+            phoneUS: "Veuillez fournir un numéro de téléphone valide.",
+            phoneUK: "Veuillez fournir un numéro de téléphone valide.",
+            mobileUK: "Veuillez fournir un numéro de téléphone mobile valide.",
+            strippedminlength: $.validator.format( "Veuillez fournir au moins {0} caractères." ),
+            email2: "Veuillez fournir une adresse électronique valide.",
+            url2: "Veuillez fournir une adresse URL valide.",
+            creditcardtypes: "Veuillez fournir un numéro de carte de crédit valide.",
+            ipv4: "Veuillez fournir une adresse IP v4 valide.",
+            ipv6: "Veuillez fournir une adresse IP v6 valide.",
+            require_from_group: $.validator.format( "Veuillez fournir au moins {0} de ces champs." ),
+            nifES: "Veuillez fournir un numéro NIF valide.",
+            nieES: "Veuillez fournir un numéro NIE valide.",
+            cifES: "Veuillez fournir un numéro CIF valide.",
+            postalCodeCA: "Veuillez fournir un code postal valide."
+        } );
+
+        $("#form_validate").validate();
+        $("select").chosen();
+    </script>
+</body>
+</html>
