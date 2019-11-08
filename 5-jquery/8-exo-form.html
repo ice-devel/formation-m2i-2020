@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jquery : formulaires</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        #container {
+            width: 250px;
+            margin: 0 auto 0 auto;
+        }
+        #list_comments div.joli {
+            border-radius: 5px;
+            box-shadow: black 1px 1px 1px;
+            margin-bottom:5px;
+            padding: 3px;
+            font-family:arial;
+        }
+        form textarea, form button {
+            width: 100%;
+            padding: 2px;
+            margin-bottom: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Exo formulaire avec jQuery</h1>
+
+    <div id="container">
+        <div id="list_comments">
+
+        </div>
+
+        <form id="form_comment">
+            <textarea></textarea>
+            <button class="btn waves-effect waves-light" type="submit" name="action">C'est tipar
+                <i class="material-icons right"></i>
+            </button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script>
+        // positionner le curseur dans la zone de texte dès l'arrivée sur la page
+        $("textarea").focus();
+
+        /*
+            Créer en html un formulaire avec un textarea and a submit
+            Qunad le formulaire est soumis, il faut récupérer la valeur du textarea
+            En jquery à ce moment-là:
+                - créer un div en mémoire
+                - lui mettre une bordure
+                - mettre le commentaire du formulaire dans ce div
+                - insérer le nouveau dans le dom
+                - réinitialiser le formulaire
+         */
+        $("#form_comment").on('submit', function(event) {
+            // empecher la page de se recharger
+            event.preventDefault();
+
+            // récupérer la valeur dans le textarea : ce que l'utilisateur a saisi
+            var textareaComment = $(this).find("textarea");
+            var commentaire = textareaComment.val();
+
+            // créer un div à insérer dans le dom
+            var newDiv = $("<div>");
+            newDiv.css("border", "1px solid gray");
+
+            // mettre le texte dans ce nouveau div
+            newDiv.text(commentaire);
+
+            // ajouter une classe au div
+            newDiv.addClass("joli");
+
+            // ajouter dans le document ce nouveau div
+            $("#list_comments").append(newDiv);
+
+            // réinialiser le formulaire
+            $(this).trigger('reset');
+            //textareaComment.val("");
+        });
+
+        // valider le formulaire en appuyant sur Entrée quand le curseur/focus
+        // est dans le textarea
+        $("#form_comment textarea").on('keypress', function(e) {
+            // tester si c'est la touche entrée qui été pressée
+            if (e.which == 13) {
+                // simuler le submit sur le formulaire
+                $("#form_comment").trigger('submit');
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
