@@ -95,7 +95,8 @@ Fonction calculAge(dateNaissance:date)
 
     age = anneeActuelle - anneeNaissance
 
-    SI (moisActuel < moisNaissance) OU (moisActuel == moisNaissance ET jourActuel < jourNaissance)
+    SI (moisActuel < moisNaissance)
+        OU (moisActuel == moisNaissance ET jourActuel < jourNaissance)
         age = age - 1
     FIN SI
 

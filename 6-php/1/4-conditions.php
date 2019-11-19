@@ -128,4 +128,60 @@
 
     // remplaçable par : (une ternaire)
     $isLegalAge = $age >= 18 ? "majeur" : "mineur";
+
+    /*
+     * Comparaison stricte
+     * Opérateur de comparaison : == et !=
+     * Pour comparer des valeurs
+     *
+     * Opérateur de comparaison stricte : === et !==
+     * Pour comparer les valeurs et les types
+     */
+    if (1 == 1) {
+        // ok
+    }
+
+    if (1 == true) {
+        // ok
+    }
+
+    if ("test" == true) {
+        // ok
+    }
+
+    if (0 == true) {
+        // pas ok
+    }
+
+    if ("" == true) {
+        // pas ok
+    }
+
+    // avec les stricts
+    if (1 === true) {
+        // pas ok
+    }
+
+    if ("test" === true) {
+        // pas ok
+    }
+
+    if (1 !== true) {
+        // ok
+    }
+
+    if ("test" !== true) {
+        // ok
+    }
+
+    $chaine = "bonjour";
+    echo $chaine[0];
+
+    $pos = strpos($chaine, "b");
+    if ($pos !== false) {
+        echo "la lettre b existe dans ".$chaine;
+    }
+    else {
+        echo "la lettre b n'existe pas dans ".$chaine;
+    }
 ?>

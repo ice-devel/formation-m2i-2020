@@ -41,6 +41,10 @@
     echo "<pre>";
     var_dump($tableauAssociatif);
     echo "</pre>";
+    /*
+     * Déclarer un tableau associatif avec des valeurs déjà présentes
+     */
+    $tab = ["nom" => "coucou", "date" => "10-10-2000"];
 
     /*
      * Accéder à un élément en particulier
@@ -68,6 +72,79 @@
     echo "<br>";
     foreach ($tableauAssociatif as $key => $value) {
         echo $key." : ".$value."<br>";
+    }
+
+    /*
+     * Rechercher dans un tableau
+     */
+    $cityTab = ["Lille", "Arras", "Valenciennes", "Armentières"];
+
+    // chercher si une valeur se trouve dans un tableau in_array
+    if (in_array("Lille", $cityTab)) {
+        echo "Lille se trouve dans le tableau des villes<br>";
+    }
+    else {
+        echo "Lille ne se trouve pas dans le tableau des villes<br>";
+    }
+
+    $ville = "Paris";
+    if (in_array($ville, $cityTab)) {
+        echo $ville." se trouve dans le tableau des villes<br>";
+    }
+    else {
+        echo $ville." ne se trouve pas dans le tableau des villes<br>";
+    }
+
+
+    // chercher si une clé existe dans un tableau
+    $tabAssoc = ["nom" => "toto", "mail" => "toto@mail.fr", "age" => 39];
+    if (array_key_exists("mail", $tabAssoc)) {
+        echo "La clé mail existe dans le tableau tabAssoc<br>";
+    }
+    else {
+        echo "La clé mail n'existe pas dans le tableau tabAssoc<br>";
+    }
+
+    // chercher si une valeur existe dans un tableau et si oui
+    // récupérer la clé/l'indice où elle se trouve
+    $cle = array_search("toto", $tabAssoc);
+    if ($cle) {
+        echo "La valeur toto se trouve à la clé ".$cle."<br>";
+    }
+    else {
+        echo "La valeur toto n'existe pas dans le tableau<br>";
+    }
+
+    $cle = array_search("pouet", $tabAssoc);
+    if ($cle) {
+        echo "La valeur pouet se trouve à la clé ".$cle."<br>";
+    }
+    else {
+        echo "La valeur pouet n'existe pas dans le tableau<br>";
+    }
+
+    $tabNum = ["coucou", "salut", "bonjour"];
+    $indice = array_search("salut", $tabNum);
+    if ($indice) {
+        echo "salut se trouve à la position ".$indice."<br>";
+    }
+    else {
+        echo "La valeur salut n'existe pas dans le tableau<br>";
+    }
+
+    $indice = array_search("coucou", $tabNum);
+    if ($indice !== false) {
+        echo "coucou se trouve à la position ".$indice."<br>";
+    }
+    else {
+        echo "La valeur coucou n'existe pas dans le tableau<br>";
+    }
+
+    if (array_search("tchouss", $tabNum) !== false) {
+
+    }
+    else {
+        echo "La valeur tchouss n'existe pas dans le tableau<br>";
     }
 ?>
 
