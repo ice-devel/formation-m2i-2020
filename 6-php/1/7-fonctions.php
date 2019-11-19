@@ -75,6 +75,9 @@
      * 1- Créer une fonction qui prend deux paramètres (entier),
      * et retourner le plus petit des deux
      *
+     * 1bis- Créer une fonction qui prend un paramètre (entier) et qui retourne
+     * la valeur de cet entier au carré
+     *
      * 2- Créer une fonction qui prend un paramètre : un tableau de string
      * Et qui retourne une chaine correspondant à tous les éléments
      * du tableau concaténés ensemble les uns après les autres
@@ -89,5 +92,102 @@
      * par défaut ce paramètre indique qu'il faut retourner la valeur grande
      * et dans l'autre que la fonction doit retourner la valeur la plus petite
      */
+
+    /*
+     * 1
+     */
+    function smallest($nb1, $nb2) {
+        // v1
+        if ($nb1 < $nb2) {
+            return $nb1;
+        }
+        else {
+            return $nb2;
+        }
+
+        // v2
+        $smallest = $nb1 < $nb2 ? $nb1 : $nb2;
+        return $smallest;
+
+        // v3
+        return ($nb1 < $nb2) ? $nb1 : $nb2;
+    }
+
+    /*
+     * 1bis
+     */
+    function carre($number) {
+        // v1
+        $carre = $number * $number;
+        return $carre;
+
+        // v2 : pas d'intéret de passer par une variable intermédiaire
+        // donc autant renvoyé tout le calcul
+        return $number * $number;
+    }
+
+    echo carre(12);
+
+    $chiffre = 9;
+    echo carre($chiffre);
+
+    echo carre(10);
+
+    function direBonjour($name) {
+        echo "Bonjour ".$name;
+    }
+
+    direBonjour("Toto");
+    direBonjour("Fab");
+    echo "<br>";
+
+    /*
+     * 2 ['coucou', 'salut', 'bonjour']
+     */
+    function concat($tabStrings) {
+        $totalString = "";
+        foreach ($tabStrings as $robespierre) {
+            $totalString = $totalString.$robespierre;
+        }
+
+        return $totalString;
+    }
+
+    $tab = ['coucou', 'salut', 'bonjour'];
+    echo concat($tab);
+    echo "<br>";
+
+    /*
+     * 3
+     * [1,5,9]
+     */
+    function sumTab($tabInts) {
+        $somme = 0;
+        for ($i=0;$i < count($tabInts); $i++) {
+            $somme = $somme + $tabInts[$i];
+        }
+
+        return $somme;
+    }
+
+    $integers = [5, 98, 45, 3];
+    echo sumTab($integers);
+    echo "<br>";
+
+    /*
+     * 4
+     * [5,3,9,10]
+     */
+    function getBiggest($ints) {
+        $biggest = $ints[0];
+        foreach ($ints as $jdlf) {
+            if ($jdlf > $biggest) {
+                $biggest = $jdlf;
+            }
+        }
+
+        return $biggest;
+    }
+
 ?>
 
