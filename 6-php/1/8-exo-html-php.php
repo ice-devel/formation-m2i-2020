@@ -71,5 +71,25 @@
             // utiliser cette fonction pour déterminer l'âge de chaque user grâce à son année de naissance
         ?>
 
+        <table>
+            <?php
+                function getAge($bd) {
+                    $currentYear = date('Y');
+                    $age = $currentYear - $bd;
+                    return $age;
+                }
+
+                foreach ($users as $banane) {
+                    $age = getAge($banane['birthday']);
+
+                    echo "<tr>
+                            <td>".$banane['nom']."</td>
+                            <td>".$age."</td>
+                          </tr>";
+                }
+
+            ?>
+        </table>
+
     </body>
 </html>
