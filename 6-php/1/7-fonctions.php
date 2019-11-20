@@ -99,11 +99,12 @@
     function smallest($nb1, $nb2) {
         // v1
         if ($nb1 < $nb2) {
-            return $nb1;
+            $smallest = $nb1;
         }
         else {
-            return $nb2;
+            $smallest =  $nb2;
         }
+        return $smallest;
 
         // v2
         $smallest = $nb1 < $nb2 ? $nb1 : $nb2;
@@ -178,16 +179,25 @@
      * 4
      * [5,3,9,10]
      */
-    function getBiggest($ints) {
-        $biggest = $ints[0];
-        foreach ($ints as $jdlf) {
-            if ($jdlf > $biggest) {
-                $biggest = $jdlf;
+    function getBiggest($ints, $max=true) {
+        if ($max == true) {
+            $biggest = $ints[0];
+            foreach ($ints as $jdlf) {
+                if ($jdlf > $biggest) {
+                    $biggest = $jdlf;
+                }
             }
+            return $biggest;
         }
-
-        return $biggest;
+        else {
+            $smallest = $ints[0];
+            foreach ($ints as $val) {
+                if ($val < $smallest) {
+                    $smallest = $val;
+                }
+            }
+            return $smallest;
+        }
     }
-
 ?>
 
