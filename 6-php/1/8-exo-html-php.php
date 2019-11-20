@@ -61,7 +61,7 @@
             $users[] = ['nom' => 'jean', 'birthday' => "1986"];
 
             //afficher avec php ces users dans un table html
-            // dans le tableau, les deuxièmes cellules de chaque ne doivent pas afficher l'année de naissance
+            // dans le tableau, les deuxièmes cellules de chaque ligne ne doivent pas afficher l'année de naissance
             // mais l'âge du user
             // Pour ça vous allez utiliser une fonction getAge, qui retourne un âge grâce à une année de naissance
             // passée en paramètre
