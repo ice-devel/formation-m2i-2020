@@ -1,0 +1,44 @@
+Exercice 1 :
+a) Déclarer et initialiser :
+- une variable de type chaine de caractères avec la valeur "1"
+- une variable de type entier avec la valeur 1
+- une variable de type boolean avec la valeur vrai
+b) comparer ces variables :
+- la chaine avec l'entier, en utilisant l'opérateur qui fera que php les considère équivalentes
+- la chaine avec l'entier, en utilisant l'opérateur qui fera que php les considère différentes
+
+c) stocker ces trois variables dans une variable de type tableau, puis utiliser une boucle pour parcourir ce tableau, et utiliser la fonction var_dump pour afficher à l'écran chaque entrée
+
+Exercice 2 :
+a) créer une fonction qui prend un paramètre obligatoire, et un autre facultatif.
+b) la fonction doit trouver le nombre de caractères du premier paramètre, qui est une chaine A vous de trouver la fonction.
+c) la fonction doit retourner le nombre de caractères manquants pour arriver au nombre défini par le second paramètre. Ce second paramètre doit avoir pour valeur par défaut 100
+d) si le nombre de caractères de la chaine du premier paramètre est égale ou supérieure à ce nombre, la fonction doit renvoyer 0
+Exemple : si le paramètre 1 a pour valeur “coucou”, et que le deuxième a pour valeur 100; la fonction doit renvoyer 94 car la longueur de coucou est 6 et qu’il manque donc 94 caractères pour arriver à 100.
+
+e) utiliser cette fonction dans un script, et affichez à l'écran une chaine testée (au choix) suivi du nombre de caractères que cette fonction renvoie
+
+Exercice 3 :
+a) créer une page web avec trois liens, et un div
+b) chaque lien doit pointer vers chacune des pages, mais en passant le paramètre GET "mot". Pour le premier lien, la valeur du paramètre doit être "coucou", pour le deuxième lien : "salut"
+c) le troisième lien doit passer 2 paramètres "mot" et "mot2", avec les valeurs de votre choix
+d) lors du clic sur un des deux  premiers liens, le paramètre GET  doit être récupérée en PHP lors du rechargement de la page, et sa valeur affichée dans le div
+e) lors du clic sur le troisième lien, les deux paramètres doit être récupérés puis affichés dans le div en une seule instruction avec la concaténation
+
+Pour cette exercice, il faut tester l'existence des variables GET avant de les utiliser
+
+
+Exercice 4:
+a) Créer un formulaire html, soumis en GET, avec ces champs:
+- champ text : nom - obligatoire - trois caractères minimum
+- champ text : date de naissance - obligatoire - format date français
+- champ email : email - obligatoire - format email
+- champ text : code postal - non obligatoire - format 5 chiffres
+- champ text : telephone - non obligatoire - format 10 chiffres
+
+b) forcer la validation html5 côté client avec les attributs adéquats (à vous de trouver comment faire pour 3 caractères minimum et format 5 chiffres par exemple, indice : les attributs à utiliser sont “required” et “pattern”)
+
+c) à la soumission du formulaire, vous devez :
+- récupérer les différentes valeurs
+- vérifier si les valeurs sont valides en faisant les mêmes vérifications qui ont été faites avec les attributs HTML5, mais côté serveur en PHP.
+- si il y a des erreurs, il faut demander à l’utilisateur de saisir à nouveau, sinon afficher le message “Vous êtes bien inscrit”.
