@@ -55,9 +55,6 @@
     <body>
         <h1>Correction TP PHP1</h1>
 
-
-
-
         <?php
             // Exercice 1
             $string = "1";
