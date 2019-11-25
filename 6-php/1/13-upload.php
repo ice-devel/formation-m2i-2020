@@ -62,7 +62,7 @@
 
             <select name="country">
                 <option></option>
-                <option <?php if ($country == "France") { echo "selected"; } ?> >France</option>
+                <option <?php if ($country == "France") { echo "selected"; } ?>>France</option>
                 <option <?php if ($country == "Belgique") { echo "selected"; } ?>>Belgique</option>
             </select>
         </form>
