@@ -44,5 +44,27 @@
             si "toto" avait été saisi dans le champ nom, il faut par défaut afficher "toto" dans
             ce champ au rechargement de la page.
         </p>
+
+        <?php
+            // formulaire soumis ?
+            if (isset($_POST['btn_form_country'])) {
+                $name = $_POST['name'];
+                $country = $_POST['country'];
+            }
+            else {
+                $name = "";
+                $country = "";
+            }
+        ?>
+
+        <form method="post">
+            <input type="text" name="name" value="<?php echo $name; ?>"/>
+
+            <select name="country">
+                <option></option>
+                <option <?php if ($country == "France") { echo "selected"; } ?> >France</option>
+                <option <?php if ($country == "Belgique") { echo "selected"; } ?>>Belgique</option>
+            </select>
+        </form>
     </body>
 </html>
