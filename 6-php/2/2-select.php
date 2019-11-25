@@ -19,16 +19,6 @@
     $sql = "SELECT * FROM player P WHERE team = ".$team;
     $statement = $pdo->query($sql);
     $players2 = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-    /*
-     * Exercice :
-     * 1 - créer le formulaire avec deux champs : 1 pour l'équipe, 1 pour le nom
-     * 2 - lorsque le formulaire est soumis, la page doit afficher les utilisateurs
-     * correspondants à l'équipe choisi et au nom choisi
-     * SELECT * FROM players
-     * SELECT id FROM players WHERE team = ? AND name = ?
-     * SELECT * FROM players WHERE team = ?
-     */
 ?>
 
 <!doctype html>
