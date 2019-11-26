@@ -41,6 +41,31 @@
     // 3ème : récupérer les enregistrements pour les mettre dans un tableau associatif/numérique
     $players = $statement->fetchAll(PDO::FETCH_ASSOC);
 
+
+    /*
+     * CRUD en SQL
+     */
+    /*
+     * SELECT * FROM table (WHERE ...)
+     * GROUP BY (HAVING )
+     * ORDER BY
+     * LIMIT
+     *
+     */
+    /*
+     * INSERT INTO table (champ1, champ2) VALUES ('valeur1', 'valeur2')
+     */
+
+    /*
+     * UPDATE table SET champ1 = 'nouvelle valeur', champ2 = 'nouvelle valeur 2'
+     * (WHERE ...)
+     */
+
+    /*
+     * DELETE FROM table (WHERE ...)
+     */
+
+
 ?>
 
 <!doctype html>

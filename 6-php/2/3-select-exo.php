@@ -11,22 +11,69 @@
 
     $players = [];
     if (isset($_GET['btn_player'])) {
+        // v1
+        /*
+        $team = filter_input(INPUT_GET, 'team');
+        $name = filter_input(INPUT_GET, 'name');
+        $name = str_replace("'", "\'", $name);
+
+        $pdo = new PDO("mysql:host=localhost;dbname=formation_m2i;charset=utf8", "root", "");
+
+        $sql = "SELECT * FROM player";
+        if ($team != "" && $name != "") {
+            $sql = $sql." WHERE team = ".$team." AND name = '".$name."'";
+        }
+        elseif ($team != "") {
+            $sql = $sql." WHERE team = ".$team;
+        }
+        else if ($name != "") {
+            $sql = $sql." WHERE name = '".$name."'";
+        }
+        else {
+            //$sql = $sql."";
+        }
+
+        $statement = $pdo->query($sql);
+        $players = $statement->fetchAll(PDO::FETCH_ASSOC);
+        */
+
+        // v2
         $team = filter_input(INPUT_GET, 'team');
         $name = filter_input(INPUT_GET, 'name');
 
         $pdo = new PDO("mysql:host=localhost;dbname=formation_m2i;charset=utf8", "root", "");
 
-        if ($team != "") {
-            $sql = "SELECT * FROM player WHERE team = ".$team;
-            $statement = $pdo->query($sql);
-            $players = $statement->fetchAll(PDO::FETCH_ASSOC);
+        // se protéger des attaques, notamment injections sql
+        $sql = "SELECT * FROM player";
+        if ($team != "" && $name != "") {
+            $sql = $sql." WHERE team = :team AND name = :name";
+        }
+        elseif ($team != "") {
+            $sql = $sql." WHERE team = :team";
         }
         else if ($name != "") {
-            $sql = "SELECT * FROM player WHERE name = '".$name."'";
-            var_dump($sql);
-            $statement = $pdo->query($sql);
-            $players = $statement->fetchAll(PDO::FETCH_ASSOC);
+            $sql = $sql." WHERE name = :name";
         }
+        else {
+            //$sql = $sql."";
+        }
+
+        $statement = $pdo->prepare($sql);
+
+        // lier les valeurs aux paramètres en les protégeant
+        if ($team != "" && $name != "") {
+            $statement->bindParam(":team", $team);
+            $statement->bindParam(":name", $name);
+        }
+        elseif ($team != "") {
+            $statement->bindParam(":team", $team);
+        }
+        else if ($name != "") {
+            $statement->bindParam(":name", $name);
+        }
+
+        $statement->execute();
+        $players = $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
 ?>
@@ -64,11 +111,17 @@
     </form>
 
     <table>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Team</th>
+        </tr>
         <?php
             foreach ($players as $player) {
                 echo "<tr>
                      <td>".$player['id']."</td>   
                      <td>".$player['name']."</td>   
+                     <td>".$player['team']."</td>   
                   </tr>";
             }
         ?>
