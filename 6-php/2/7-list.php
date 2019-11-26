@@ -14,6 +14,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
     <style>
         table {
             border-collapse: collapse;
@@ -26,7 +27,15 @@
 <body>
     <h2>Liste des players</h2>
 
-    <table>
+    <table class="table table-striped table-hover">
+        <thead>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Equipe</th>
+            <th>Modifier</th>
+            <th>Supprimer</th>
+        </thead>
+        <tbody>
         <?php
             foreach ($players as $player) {
                 echo "<tr>
@@ -38,7 +47,9 @@
                        </tr>";
             }
         ?>
+        </tbody>
     </table>
+
 </body>
 </html>
 
