@@ -1,9 +1,9 @@
 <?php
     $pdo = new PDO("mysql:host=localhost;dbname=formation_m2i;charset=utf8", "root", "");
-    $sql = "SELECT * FROM player";
+    $sql = "SELECT * FROM player P JOIN team T ON P.team = T.id";
     $statement = $pdo->prepare($sql);
     $result = $statement->execute();
-    $players = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $players = $statement->fetchAll();
 ?>
 
 <!doctype html>
@@ -47,11 +47,11 @@
         <?php
             foreach ($players as $player) {
                 echo "<tr>
-                        <td>".$player['id']."</td>
-                        <td>".$player['name']."</td>
-                        <td>".$player['team']."</td>
-                        <td><a href='6-update.php?id=".$player['id']."'>Modifier</a></td>
-                        <td><a href='8-delete.php?id=".$player['id']."' onclick=\"return confirm('Tu veux vraiment supprimer ce joueur ?');\">Supprimer</a></td>
+                        <td>".$player[0]."</td>
+                        <td>".$player[2]."</td>
+                        <td>".$player[10]."</td>
+                        <td><a href='6-update.php?id=".$player[0]."'>Modifier</a></td>
+                        <td><a href='8-delete.php?id=".$player[0]."' onclick=\"return confirm('Tu veux vraiment supprimer ce joueur ?');\">Supprimer</a></td>
                        </tr>";
             }
         ?>
