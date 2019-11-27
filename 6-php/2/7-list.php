@@ -27,6 +27,14 @@
 <body>
     <h2>Liste des players</h2>
 
+    <?php
+        if (array_key_exists('userDeleted', $_GET)) {
+            $idDeleted = filter_input(INPUT_GET, 'userDeleted');
+
+            echo "L'utilisateur ".$idDeleted." a bien été supprimé<br>";
+        }
+    ?>
+
     <table class="table table-striped table-hover">
         <thead>
             <th>ID</th>
@@ -43,7 +51,7 @@
                         <td>".$player['name']."</td>
                         <td>".$player['team']."</td>
                         <td><a href='6-update.php?id=".$player['id']."'>Modifier</a></td>
-                        <td><a href='8-delete.php?id=".$player['id']."'>Supprimer</a></td>
+                        <td><a href='8-delete.php?id=".$player['id']."' onclick=\"return confirm('Tu veux vraiment supprimer ce joueur ?');\">Supprimer</a></td>
                        </tr>";
             }
         ?>
