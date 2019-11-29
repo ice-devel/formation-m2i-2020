@@ -64,7 +64,6 @@
     $replacement = "<a href='http://$2'>$0</a>";
     $nouvelleChaine = preg_replace($regex, $replacement,$chaine);
     echo $nouvelleChaine."<br>";
-    dumpFab($matches);
 
     /*
      * Les parenthèses capturantes servent à pouvoir récupérer la valeur qui matche
