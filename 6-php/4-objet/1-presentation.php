@@ -12,7 +12,7 @@
      */
 
     /*
-     * Un personange en procédural :
+     * Un personnage en procédural :
      */
 
     $nameChar1 = "Batman";
