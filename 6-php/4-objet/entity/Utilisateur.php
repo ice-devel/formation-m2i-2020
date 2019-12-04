@@ -13,7 +13,7 @@ class Utilisateur
     /*
      * Constructor
      */
-    public function __construct($id, $name, $email, $isEnabled, $createdAt=null)
+    public function __construct($id=null, $name=null, $email=null, $isEnabled=null, $createdAt=null)
     {
         if ($createdAt == null) {
             $createdAt = new DateTime();
@@ -40,7 +40,7 @@ class Utilisateur
     }
 
     /**
-     * @param mixed $id
+     * @param int $id
      */
     public function setId($id)
     {
@@ -88,21 +88,13 @@ class Utilisateur
         $this->email = $email;
     }
 
-    /**
-     * @return mixed
-     */
     public function getisEnabled()
     {
         return $this->isEnabled;
     }
 
-    /**
-     * @param mixed $isEnabled
-     */
     public function setIsEnabled($isEnabled)
     {
         $this->isEnabled = $isEnabled;
     }
-
-
 }

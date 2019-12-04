@@ -11,6 +11,7 @@
 
         public function find($id) {
             $sql = "SELECT * FROM player WHERE id = :id";
+
             $statement = $this->db->prepare($sql);
             $result = $statement->execute([':id' => $id]);
             $tabPlayer = $statement->fetch(PDO::FETCH_ASSOC);
