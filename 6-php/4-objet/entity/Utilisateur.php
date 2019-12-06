@@ -52,7 +52,7 @@ class Utilisateur
     }
 
     public function setName($name) {
-        $name = strtoupper($name);
+        $name = mb_strtoupper($name);
         $this->name = $name;
     }
 

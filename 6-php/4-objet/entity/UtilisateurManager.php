@@ -5,7 +5,6 @@
      * Date: 04/12/2019
      * Time: 09:58
      */
-
     class UtilisateurManager
     {
         private $pdo;
@@ -70,11 +69,25 @@
             return $result;
         }
 
-        public function update() {
+        public function update(Utilisateur $user) {
+            $sql = "UPDATE utilisateur SET name=:name, email=:email WHERE id=:id";
+            $statement = $this->pdo->prepare($sql);
+            $result = $statement->execute([
+                ':name' => $user->getName(),
+                ':email' => $user->getEmail(),
+                ':id' => $user->getId()
+            ]);
 
+            return $result;
         }
 
-        public function delete() {
+        public function delete($id) {
+            $sql = "DELETE FROM utilisateur WHERE id=:id";
+            $statement = $this->pdo->prepare($sql);
+            $result = $statement->execute([
+                ':id' => $id
+            ]);
 
+            return $result;
         }
     }

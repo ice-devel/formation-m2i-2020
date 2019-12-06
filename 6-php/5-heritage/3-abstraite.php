@@ -14,6 +14,10 @@
         // une méthode abstraite ne contient pas de corps, uniquement une signature
         // ce qui veut dire qu'elle doit obligatoire être redéfinie dans chaque enfant de cette classe
         abstract public function breath();
+
+        public function death() {
+            echo "Pouf";
+        }
     }
 
     class Animal extends Being {
@@ -46,3 +50,4 @@
 
     $animal = new Animal();
     $animal->breath();
+    $animal->death();
