@@ -1,13 +1,16 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+{#
+Hériter d'un template avec extends :
+    - reprendre le contenu d'un template parent
+    et pouvoir modifier le contenu des blocks qui s'y trouvent
+    - on peut redéfinir les blocks dans l'ordre que l'on veut
+#}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <p>
+        Coucou
+    </p>
+
     <!-- Un commentaire html est visible dans le navigateur -->
 
     {#
@@ -16,14 +19,28 @@
     #}
     Chiffre généré : {{ chiffre }}
 
-    {% if chiffre > 25 %}
-    Bravo
+    {% if (chiffre > 25) %}
+        Bravo
+    {% elseif chiffre > 15 %}
+        Presque bravo
+    {% else %}
+        Nul
     {% endif %}
 
-    {% for variable in tabChiffres %}
-        <br>{{ variable }}
+    {% for toto in tabChiffres %}
+        <p>{{ toto }}</p>
     {% endfor %}
+{% endblock %}
 
+{% block title %}
+    Page produit dynamique
+{% endblock %}
 
-</body>
-</html>
+{% block js_perso %}
+    {# on peut reprendre le contenu du bloc parent grâce à la fonction parent() #}
+    {{ parent() }}
+
+    <script>
+        console.log("Page produit");
+    </script>
+{% endblock %}

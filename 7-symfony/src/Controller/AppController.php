@@ -11,33 +11,29 @@ class AppController extends AbstractController
     /**
      * @Route("/app", name="app")
      */
-    public function index()
+    public function app()
     {
+        /* ici on utilise twig pour génerer un template, et mettre créer une response automatiqument */
         return $this->render('app/index.html.twig');
     }
 
     /**
-     * @Route("/home", name="home")
+     * @Route("/app1", name="app1")
      */
-    public function home()
+    public function app1()
     {
+        /* ici on crée nous-même l'objet Response */
         $response = new Response();
-        $response->setContent("<p>coucou</p>");
+        $response->setContent(0);
         return $response;
     }
 
     /**
-     * @Route("/produit", name="produit")
+     * Pour créer une route, deux paramètres : le premier c'est l'URL de la route (ici : /app2)
+     * le deuxième, c'est le nom de la route (ici app2_variables)
+     * @Route("/app2", name="app2_variables")
      */
-    public function produit()
-    {
-        return $this->render('app/produit.html.twig');
-    }
-
-    /**
-     * @Route("/produit-dynamique", name="produit_dynamique")
-     */
-    public function produitDynamique()
+    public function app2()
     {
         $chiffre = rand(10, 50);
         // afficher quelquechose : echo NON, on passe par un template
