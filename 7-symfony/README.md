@@ -86,22 +86,48 @@ Ce sont les données qu'on veut persister, qui représentent
 le côté "métier" de notre application.
 Par exemple dans un site e-commerce : produit, commande, utilisateur, etc.
 
-On va alors modéliser nos entités par des classes d'objets,
-et on laisse doctrine faire les intéractions avec la base grâce à un mapping.
-
-1 - Configurer les accès à la base dans le fichier .env
-    DATABASE_URL
-2 - Créer la base de données :
-    php bin/console doctrine:database:create
-
-3 - Créer une entité : exemple Produit(nom, prix, description, en stock)
-    php bin/console make:entity
-
-4 - Mettre à jour la structure de la base
-    php bin/console doctrine:schema:update --force
+1 - Création entité / Structure 
+    On va alors modéliser nos entités par des classes d'objets,
+    et on laisse doctrine faire les intéractions avec la base grâce à un mapping.
     
-5 - Créer une autre entité
-6 - Mettre à jour la structure de la base
-7 - etc.
+    1 - Configurer les accès à la base dans le fichier .env
+        DATABASE_URL
+        
+    2 - Créer la base de données :
+        php bin/console doctrine:database:create
+    
+    3 - Créer une entité : exemple Produit(nom, prix, description, en stock)
+        php bin/console make:entity
+    
+    4 - Mettre à jour la structure de la base
+        php bin/console doctrine:schema:update --force
+        
+    5 - Créer une autre entité
+    6 - Mettre à jour la structure de la base
+    7 - etc.
+    
+2 - Utilisation des entités
 
+Dans un controller, on a besoin d'une entité, de l'entité manager de Doctrine.
+Il suffit ensuite d'appeler la méthode persist de l'em, puis flush pour envoyer en bdd.
+
+    ## Formulaire
+   
+Pour "hydrater" une entité, on passait avant par un formulaire html,
+puis on devait récupérer les valeurs une par une, les vérifier,
+et instancier un objet pour lui setter ses propriétés grâce aux valeurs
+récupérées.
+Avec Symfony, on va laisser ces tâches au composant Form.
+
+    1- Créer une entité (Product)
+    2- Créer le formulaire associé (ProductType)
+        - ajouter/retirer les champs qu'on veut afficher
+        - configurer les champs
+    3- Dans le controller, on va créer ce formulaire
+    (4-) Quand l'utilisateur a validé le formulaire, le composant va nous
+        permettre d'avoir une nouvelle entité avec les propriétés déjà settées
+    5- Passer ce formulaire à notre template
+
+
+    
 
