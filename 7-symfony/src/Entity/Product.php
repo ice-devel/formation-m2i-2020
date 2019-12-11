@@ -41,6 +41,12 @@ class Product
      */
     private $isAvailable;
 
+    public function __construct()
+    {
+        $this->setCreatedAt(new \DateTime());
+        $this->setIsAvailable(true);
+    }
+
     public function getId(): ?int
     {
         return $this->id;

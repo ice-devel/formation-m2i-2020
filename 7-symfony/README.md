@@ -128,6 +128,36 @@ Avec Symfony, on va laisser ces tâches au composant Form.
         permettre d'avoir une nouvelle entité avec les propriétés déjà settées
     5- Passer ce formulaire à notre template
 
+   ## Exercice CRUD
+   
+Développer le CRUD pour une entité : Article
 
+    - 1 : Générer l'entité Article : nom, description, auteur, en-ligne/hors-ligne
+        - Créer la classe
+        - Mettre à jour la structure de la base de données
+        
+    - 2 : Générer le formulaire associé
+    
+    - 3 : Créer le controller associé avec les 4 méthodes : 
+            - création, mise à jour, lecture, suppression
+            - Donc 4 pages : route, fonction, template
+            
+            - Création :
+                - Nouvel objet
+                - Création formulaire
+                - Associer formulaire à la requête
+                - Vérification formulaire soumis et valide
+                    - Enregistrement en bdd
+                - Génération du template en lui passant le formulaire
+                    - Afficher le formulaire dans le template
+                    
+            - Mise à jour
+                - Récupération d'un objet depuis la bdd
+                - Création formulaire
+                - Associer formulaire à la requête
+                - Vérification formulaire soumis et valide
+                    - Enregistrement en bdd
+                - Génération du template en lui passant le formulaire
+                    - Afficher le formulaire dans le template
     
 
