@@ -6,11 +6,13 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+        {% block nav %}
         <nav>
             <a href="{{ path('app') }}">Page app</a>
             <a href="{{ path('app1') }}">Page app1</a>
             <a href="{{ path('app2_variables') }}">Page app2</a>
         </nav>
+        {% endblock %}
 
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}

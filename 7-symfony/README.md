@@ -134,9 +134,13 @@ Développer le CRUD pour une entité : Article
 
     - 1 : Générer l'entité Article : nom, description, auteur, en-ligne/hors-ligne
         - Créer la classe
+        php bin/console make:entity
+        
         - Mettre à jour la structure de la base de données
+        php bin/console doctrine:schema:update --force
         
     - 2 : Générer le formulaire associé
+        php bin/console make:form
     
     - 3 : Créer le controller associé avec les 4 méthodes : 
             - création, mise à jour, lecture, suppression
@@ -161,3 +165,36 @@ Développer le CRUD pour une entité : Article
                     - Afficher le formulaire dans le template
     
 
+- Installation Symfony
+    - Serveur web, php, base de données : xxamp (apache, php, mysql)
+    - composer (composer-setup.exe) : https://getcomposer.org/download/
+    - symfony installer : https://symfony.com/download
+    - mettre php, composer, et symfony dans les variables
+        (les installer composer et symfony le font automatiquement,
+        donc reste php : on met le chemin du dossier de php.exe dans la variable environnement PATH)
+    - Se placer en ligne de commande dans le htdocs
+        - symfony new --full symfony-tp
+        OU
+        - composer create-project symfony/website-skeleton symfony-tp
+    - créer un vhost : créer un nom de domaine uniquement pour notre poste
+      et le faire vers le répertoire public de notre projet symfony
+      On crée dans les fichiers de configuration de apache :
+        - C:\xampp\apache\conf\extra\http-vhosts.conf et ajouter 
+            <VirtualHost *:80>
+                DocumentRoot "C:/xampp/htdocs/remise à niveau/8-symfony-tp/public"
+                ServerName mon-symfony-tp.local
+            </VirtualHost>
+        - on redémarre pour prendre en compte le nouveau vhost
+        
+        - On dit à notre machine de rediriger ce domaine vers notre propre machine
+          On modifie C:\Windows\System32\drivers\etc\host, pour ajouter :
+          127.0.0.1		mon-symfony-tp.local
+        
+        - Dans le navigateur on tape : http://mon-symfony-tp.local
+        
+- Création de la base la bdd :
+    - On configure la chaine de connexion à une base dans le fichier .env
+      à la racine du projet
+    - On lance la commande pour créer la bdd dans mysql :
+      php bin/console doctrine:database:create
+        

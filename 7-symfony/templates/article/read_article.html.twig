@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block nav %}{% endblock %}
+
+{% block body %}
+    <h1>Afficher un article</h1>
+
+    Nom de l'article : {{ article.getName() }}<br>
+    Description de l'article : {{ article.getDescription() }}<br>
+{% endblock %}

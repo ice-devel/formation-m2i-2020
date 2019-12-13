@@ -24,7 +24,6 @@ class FormController extends AbstractController
         $product->setCreatedAt(new \DateTime());
         */
 
-
         // 2- créer le formulaire, et associer l'entité qui devra être hydratée automatiquement
         $form = $this->createForm(ProductType::class, $product);
 
@@ -39,7 +38,6 @@ class FormController extends AbstractController
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($product);
                 $em->flush();
-
             }
         }
 
