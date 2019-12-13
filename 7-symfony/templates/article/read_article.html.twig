@@ -7,4 +7,49 @@
 
     Nom de l'article : {{ article.getName() }}<br>
     Description de l'article : {{ article.getDescription() }}<br>
+    Auteur de l'article : {{ article.getAuthor() }}<br>
+    En ligne :
+    {% if article.getIsOnline() %}
+        oui
+    {% else %}
+        non
+    {% endif %}
+    <br>
+
+    {# En twig, on peut appeler les propriétés des objets directement,
+    même si elles sont privées : c'est twig qui va chercher les getter #}
+    <br>
+    Nom de l'article : {{ article.name }}<br>
+    Description de l'article : {{ article.description }}<br>
+    Auteur de l'article : {{ article.author }}<br>
+    En ligne :
+    {% if article.isOnline %}
+        oui
+    {% else %}
+        non
+    {% endif %}
+    <br>
+
+    {#
+    Précisions sur la syntaxe{{ objet.attribut }}
+    Le fonctionnement de la syntaxe{{ objet.attribut }} est un peu plus complexe qu'elle n'en a l'air.
+    Elle ne fait pas seulementobjet->getAttribut.
+    En réalité, voici ce qu'elle fait exactement :
+
+    Elle vérifie si objet est un tableau, et si attribut est un index valide.
+    Si c'est le cas, elle affiche objet['attribut'].
+    Sinon, et si objet est un objet, elle vérifie si attribut est
+    un attribut valide (public donc). Si c'est le cas, elle afficheobjet->attribut.
+
+    Sinon, et si objet est un objet, elle vérifie si attribut() est
+    une méthode valide (publique donc). Si c'est le cas, elle afficheobjet->attribut().
+
+    Sinon, et si objet est un objet, elle vérifie si getAttribut() est
+    une méthode valide. Si c'est le cas, elle afficheobjet->getAttribut().
+
+    Sinon, et si objet est un objet, elle vérifie si isAttribut() est
+    une méthode valide. Si c'est le cas, elle afficheobjet->isAttribut().
+
+    Sinon, bug.
+    #}
 {% endblock %}

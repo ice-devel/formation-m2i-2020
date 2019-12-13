@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block nav %}{% endblock %}
+
+{% block body %}
+    <h1>Afficher tous les articles</h1>
+
+    {% if articles | length > 0 %}
+        {% for article in articles %}
+            Nom de l'article : {{ article.name }}<br>
+            Description de l'article : {{ article.description }}<br>
+            Auteur de l'article : {{ article.author }}<br>
+            En ligne :
+            {% if article.isOnline %}
+                oui
+            {% else %}
+                non
+            {% endif %}
+            <br>
+            <a href="{{ path('article_delete', {'id': article.id}) }}">Supprimer</a>
+            <br> <br>
+        {% endfor %}
+    {% else %}
+        Il n'y a pas d'article en bdd
+    {% endif %}
+
+{% endblock %}

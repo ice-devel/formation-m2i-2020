@@ -12,20 +12,43 @@ Concurrents :
     - CakePHP
     - Silex
 
-Installation :
-    - Soit avec Composer : gestionnaire de dépendances
-    - Soit avec l'installer "symfony" (qui utilise composer)
 
-    - Installer PHP avec une version compatible pour la version de symfony voulue
-    - Installer Composer
-    - Télécharger le fichier (installateur) Symfony
-    - Créer un vHost (virtual host) : associer un nom de domaine à un répertoire web
-        - Ajouter la config
-        - Redémarrer Apache
-        - Configurer le fichier host du système : C:\Windows\System32\drivers\etc
-        - Si vous utilisez apache comme serveur, pensez à installer
-            le recipe : apache2-pack
-            composer require symfony/apache-pack
+- Installation Symfony
+    - Serveur web, php, base de données : xxamp (apache, php, mysql)
+    - composer (composer-setup.exe) : https://getcomposer.org/download/
+    - symfony installer : https://symfony.com/download
+    - mettre php, composer, et symfony dans les variables
+        (les installer composer et symfony le font automatiquement,
+        donc reste php : on met le chemin du dossier de php.exe dans la variable environnement PATH)
+    - Se placer en ligne de commande dans le htdocs
+        - symfony new --full symfony-tp
+        OU
+        - composer create-project symfony/website-skeleton symfony-tp
+    - créer un vhost : créer un nom de domaine uniquement pour notre poste
+      et le faire vers le répertoire public de notre projet symfony
+      On crée dans les fichiers de configuration de apache :
+        - C:\xampp\apache\conf\extra\http-vhosts.conf et ajouter 
+            <VirtualHost *:80>
+                DocumentRoot "C:/xampp/htdocs/remise à niveau/8-symfony-tp/public"
+                ServerName mon-symfony-tp.local
+            </VirtualHost>
+        - on redémarre pour prendre en compte le nouveau vhost
+        
+        - On dit à notre machine de rediriger ce domaine vers notre propre machine
+          On modifie C:\Windows\System32\drivers\etc\host, pour ajouter :
+          127.0.0.1		mon-symfony-tp.local
+        
+        - Dans le navigateur on tape : http://mon-symfony-tp.local
+        
+- Création de la base la bdd :
+    - On configure la chaine de connexion à une base dans le fichier .env
+      à la racine du projet
+    - On lance la commande pour créer la bdd dans mysql :
+      php bin/console doctrine:database:create
+        
+    - Si vous utilisez apache comme serveur, pensez à installer
+    le recipe : apache2-pack
+    composer require symfony/apache-pack
 
 Basé sur MVC :
     - models : entitiés, les classes d'objets qu'on veut gérer en bdd
@@ -48,13 +71,27 @@ Pour créer une page, il faut au minimum :
     - un controller (fonction dans la classe controller juste en dessous)
     - un template (fichier .twig dans le dossier template)
     
+Exercice : 
 Créer un nouveau controller, puis créer une nouvelle page
 qui affiche un doctype html complet, et le mot Hello World!
 dans la balise body
 
+    ## 1-bis Routing
 Un controller est appelé si le composant routing fait un lien entre une
-url et une fonction. Une fonction d'un controller doit obligatoire
+url et un pattern défini dans la route. Une fonction d'un controller doit obligatoire
 retourner une objet Response.
+
+Les patterns peuvent des paramètres dynamiques : /article/read/{id}
+Ici {id} est un paramètre d'URL qu'on va pouvoir dans le controller en injectant
+la variable PHP $id dans les paramètres de la fonction.
+
+Du coup, il faut faire attention : si un pattern écrit en dur correspondant
+à une pattern dynamique déclaré avant, on ne pourra jamais accéder à cette page.
+    Exemple :
+        - /article/read/all
+        Doit se trouver avant :
+        - /article/read/{id}
+
 
     ## 2 - Templates
 Par défaut avec Symfony, les templates sont générés avec Twig : moteur de template
@@ -80,6 +117,28 @@ les clés seront les noms de variables à utiliser dans le template.
     - Dans nos templates, on peut vouloir faire des liens vers d'autres. On 
     utilise la fonction twig path(), dont le premier paramètre est le nom de 
     la route dont on veut l'URL
+    
+- Dans un template, on peut écrire {{ objet.attribut }} :
+    Précisions sur la syntaxe{{ objet.attribut }}
+    Le fonctionnement de la syntaxe{{ objet.attribut }} est un peu plus complexe qu'elle n'en a l'air.
+    Elle ne fait pas seulementobjet->getAttribut.
+    En réalité, voici ce qu'elle fait exactement :
+
+    Elle vérifie si objet est un tableau, et si attribut est un index valide.
+    Si c'est le cas, elle affiche objet['attribut'].
+    Sinon, et si objet est un objet, elle vérifie si attribut est
+    un attribut valide (public donc). Si c'est le cas, elle afficheobjet->attribut.
+
+    Sinon, et si objet est un objet, elle vérifie si attribut() est
+    une méthode valide (publique donc). Si c'est le cas, elle afficheobjet->attribut().
+
+    Sinon, et si objet est un objet, elle vérifie si getAttribut() est
+    une méthode valide. Si c'est le cas, elle afficheobjet->getAttribut().
+
+    Sinon, et si objet est un objet, elle vérifie si isAttribut() est
+    une méthode valide. Si c'est le cas, elle afficheobjet->isAttribut().
+
+    Sinon, bug.
     
     ## Entités
 Ce sont les données qu'on veut persister, qui représentent
@@ -128,6 +187,28 @@ Avec Symfony, on va laisser ces tâches au composant Form.
         permettre d'avoir une nouvelle entité avec les propriétés déjà settées
     5- Passer ce formulaire à notre template
 
+    ## Messages Flash
+    
+Les messages flash sont des messages destinés à n'être affichés qu'une seule fois.
+Ils sont pratiques lors de la création/modification/suppression des entités.
+Un message flash est un message mis en session, et supprimé de la session dès lors qu'il est affiché.
+
+Créer un message (dans un controller) :
+    
+```
+$this->addFlash("type", "le message à afficher");
+```
+
+Afficher un message flash (dans un template)
+```
+{% for key, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ key }}">{{ message }}</div>
+    {% endfor %}
+{% endfor %}
+```
+    
+    
    ## Exercice CRUD
    
 Développer le CRUD pour une entité : Article
@@ -164,37 +245,3 @@ Développer le CRUD pour une entité : Article
                 - Génération du template en lui passant le formulaire
                     - Afficher le formulaire dans le template
     
-
-- Installation Symfony
-    - Serveur web, php, base de données : xxamp (apache, php, mysql)
-    - composer (composer-setup.exe) : https://getcomposer.org/download/
-    - symfony installer : https://symfony.com/download
-    - mettre php, composer, et symfony dans les variables
-        (les installer composer et symfony le font automatiquement,
-        donc reste php : on met le chemin du dossier de php.exe dans la variable environnement PATH)
-    - Se placer en ligne de commande dans le htdocs
-        - symfony new --full symfony-tp
-        OU
-        - composer create-project symfony/website-skeleton symfony-tp
-    - créer un vhost : créer un nom de domaine uniquement pour notre poste
-      et le faire vers le répertoire public de notre projet symfony
-      On crée dans les fichiers de configuration de apache :
-        - C:\xampp\apache\conf\extra\http-vhosts.conf et ajouter 
-            <VirtualHost *:80>
-                DocumentRoot "C:/xampp/htdocs/remise à niveau/8-symfony-tp/public"
-                ServerName mon-symfony-tp.local
-            </VirtualHost>
-        - on redémarre pour prendre en compte le nouveau vhost
-        
-        - On dit à notre machine de rediriger ce domaine vers notre propre machine
-          On modifie C:\Windows\System32\drivers\etc\host, pour ajouter :
-          127.0.0.1		mon-symfony-tp.local
-        
-        - Dans le navigateur on tape : http://mon-symfony-tp.local
-        
-- Création de la base la bdd :
-    - On configure la chaine de connexion à une base dans le fichier .env
-      à la racine du projet
-    - On lance la commande pour créer la bdd dans mysql :
-      php bin/console doctrine:database:create
-        
