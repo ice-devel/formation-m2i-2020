@@ -30,7 +30,7 @@ class ArticleController extends AbstractController
         // est-ce que le formulaire est soumis ?
         if ($form->isSubmitted()) {
             // est-ce qu'il est valide
-            if (!$form->isValid()) {
+            if ($form->isValid()) {
                 // enregistrer en bdd
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($article);

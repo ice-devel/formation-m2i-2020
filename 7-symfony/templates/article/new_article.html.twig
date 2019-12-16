@@ -5,5 +5,90 @@
 {% block body %}
     <h1>Formulaire création article</h1>
 
-    {{ form(formArticle) }}
+    {#
+        1 - Afficher le formulaire en une seule fonction
+        Le html est définie par défaut via le composant Form
+    #}
+
+    {#
+        {{ form(formArticle) }}
+    #}
+
+    {#
+        2 - afficher champ par champ
+        On utilise la fonction form_row pour afficher un champ (label, widget, erreur)
+        Et il faut ouvrir le formulaire et le fermer
+        Fonction form_start va générer la balise d'ouverture avec les propriétés définies
+        côté server (method, action, etc.)
+        Form form_end va générer la balise de fermeture en affichant les champs qui n'auraient
+        pas encore été affichés (dont le _token, champ hidden de sécurité)
+    #}
+
+    {#
+    {{ form_start(formArticle) }}
+    <table>
+        <tr>
+            <td>{{ form_row(formArticle.name) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_row(formArticle.description) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_row(formArticle.author) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_row(formArticle.isOnline) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_row(formArticle.submit) }}</td>
+        </tr>
+    </table>
+    {{ form_end(formArticle) }}
+    #}
+
+    {#
+        3 - Afficher chaque élément d'un champ de façon indépendant : label, widget, erreur
+        form_label : pour afficher uniquement le label du champ
+        form_widget : pour afficher uniquement le widget (input, textarea, select) du champ
+        form_errrors : pour afficher uniquement l'erreur serveur du champ
+    #}
+
+    {#
+        avec un error bubbling à vrai sur tous les champs, les errors sont remontées
+        dans l'objet form
+    #}
+    {% if formArticle.vars.errors | length > 0 %}
+    <div class="alert alert-danger">
+
+    </div>
+    {% endif %}
+
+    {{ form_start(formArticle) }}
+        <table>
+            <tr>
+                <td>{{ form_label(formArticle.name) }}</td>
+                <td>{{ form_widget(formArticle.name) }}</td>
+                <td>{{ form_errors(formArticle.name) }}</td>
+            </tr>
+            <tr>
+                <td>{{ form_label(formArticle.description) }}</td>
+                <td>{{ form_widget(formArticle.description) }}</td>
+                <td>{{ form_errors(formArticle.description) }}</td>
+            </tr>
+            <tr>
+                <td>{{ form_label(formArticle.author) }}</td>
+                <td>{{ form_widget(formArticle.author) }}</td>
+                <td>{{ form_errors(formArticle.author) }}</td>
+            </tr>
+            <tr>
+                <td>{{ form_label(formArticle.isOnline) }}</td>
+                <td>{{ form_widget(formArticle.isOnline) }}</td>
+                <td>{{ form_errors(formArticle.isOnline) }}</td>
+            </tr>
+            <tr>
+                <td>{{ form_row(formArticle.submit) }}</td>
+            </tr>
+        </table>
+    {{ form_end(formArticle) }}
+
 {% endblock %}

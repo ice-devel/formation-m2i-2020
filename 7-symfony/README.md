@@ -215,7 +215,37 @@ Afficher un message flash (dans un template)
     {% endfor %}
 {% endfor %}
 ```
+
+    ## Afficher le formulaire dans un template
     
+    1 - Afficher le formulaire en une seule fois :
+    On passe le FormView dans la fonction twig form()
+    {{ form(variableForm) }}
+    
+    2 - afficher champ par champ
+    On utilise la fonction form_row pour afficher un champ (label, widget, erreur)
+    Et il faut ouvrir le formulaire et le fermer
+    Fonction form_start va générer la balise d'ouverture avec les propriétés définies
+    côté server (method, action, etc.)
+    Form form_end va générer la balise de fermeture en affichant les champs qui n'auraient
+    pas encore été affichés (dont le _token, champ hidden de sécurité)
+    
+    3 - Afficher chaque élément d'un champ de façon indépendant : label, widget, erreur
+    form_label : pour afficher uniquement le label du champ
+    form_widget : pour afficher uniquement le widget (input, textarea, select) du champ
+    form_errrors : pour afficher uniquement l'erreur serveur du champ
+    
+    ## Validation des entités
+    Le service validator de symfony nous permet de valider des entités :
+    est-ce que les données sont valides ?
+    Le service form.factory utilise le service validator, sans qu'on ait besoin
+    de le préciser.
+    
+    Il faut simplement configurer nos entités avec les contraintes
+    (obligatoire, pattern, unicité, etc.)
+    https://symfony.com/doc/current/reference/constraints.html
+    
+    La validation serveur est fortement conseillée pour tout dev digne de ce nom.
     
    ## Exercice CRUD
    
