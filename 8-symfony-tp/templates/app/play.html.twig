@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <style>
+        .box {
+            display: flex;
+        }
+
+        .box div {
+            border:1px solid;
+            flex: 1 1 0;
+            width: 0;
+        }
+    </style>
+
+    <div class="box">
+        {% if fCharacter is not null %}
+        <div id="first_character">
+            Personnage 1 :<br>
+            Nom : {{ fCharacter.name }}<br>
+            Force : {{ fCharacter.strength }}<br>
+            Santé : {{ fCharacter.health }}<br>
+            Armure : {{ fCharacter.armor }}<br>
+            Description : {{ fCharacter.description }}
+            <br>
+            <a href="">Attaquer</a>
+            <a href="">Soigner</a>
+        </div>
+
+        <div id="second_character">
+            Personnage 2<br>
+            Nom : {{ sCharacter.name }}<br>
+            Force : {{ sCharacter.strength }}<br>
+            Santé : {{ sCharacter.health }}<br>
+            Armure : {{ sCharacter.armor }}<br>
+            Description : {{ sCharacter.description }}
+            <br>
+            <a href="">Attaquer</a>
+            <a href="">Soigner</a>
+        </div>
+        {% else %}
+            Désolé, il n'y a pas assez de personnages en bdd
+        {% endif %}
+    </div>
+
+{% endblock %}

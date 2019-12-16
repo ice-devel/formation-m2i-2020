@@ -20,10 +20,17 @@ Concurrents :
     - mettre php, composer, et symfony dans les variables
         (les installer composer et symfony le font automatiquement,
         donc reste php : on met le chemin du dossier de php.exe dans la variable environnement PATH)
+    
+    Nouveau projet : 
     - Se placer en ligne de commande dans le htdocs
         - symfony new --full symfony-tp
         OU
         - composer create-project symfony/website-skeleton symfony-tp
+    OU récupérer un projet sur git ;
+        - git clone url...
+    Quand on récupère un projet depuis, certains fichiers ne sont versionnés, comme les vendor. 
+    On les installe avec la commande : composer update    
+              
     - créer un vhost : créer un nom de domaine uniquement pour notre poste
       et le faire vers le répertoire public de notre projet symfony
       On crée dans les fichiers de configuration de apache :
@@ -39,16 +46,17 @@ Concurrents :
           127.0.0.1		mon-symfony-tp.local
         
         - Dans le navigateur on tape : http://mon-symfony-tp.local
+            
+- Serveur Apache : Si vous utilisez apache comme serveur, pensez à installer
+    le recipe : apache2-pack
+    composer require symfony/apache-pack
         
 - Création de la base la bdd :
     - On configure la chaine de connexion à une base dans le fichier .env
       à la racine du projet
     - On lance la commande pour créer la bdd dans mysql :
       php bin/console doctrine:database:create
-        
-    - Si vous utilisez apache comme serveur, pensez à installer
-    le recipe : apache2-pack
-    composer require symfony/apache-pack
+
 
 Basé sur MVC :
     - models : entitiés, les classes d'objets qu'on veut gérer en bdd
