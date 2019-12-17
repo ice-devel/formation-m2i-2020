@@ -247,6 +247,9 @@ https://symfony.com/doc/current/reference/constraints.html
 
 La validation serveur est fortement conseillée pour tout dev digne de ce nom.
     
+    ## Services
+Fonctionnement global : https://user.oc-static.com/files/420001_421000/420451.png
+    
    ## Exercice CRUD
    
 Développer le CRUD pour une entité : Article
