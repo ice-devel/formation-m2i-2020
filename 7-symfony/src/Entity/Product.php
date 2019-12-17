@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
@@ -23,16 +24,24 @@ class Product
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotNull()
+     * @Assert\Length(max=50)
      */
     private $name;
 
     /**
      * @ORM\Column(type="decimal", precision=6, scale=2)
+     * @Assert\NotNull()
+     * @Assert\Regex(
+     *     pattern     = "/^\d{1,4}((,|\.)\d{1,2})?$/"
+     * )
      */
     private $price;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotNull()
+     * @Assert\Length(min=10)
      */
     private $description;
 

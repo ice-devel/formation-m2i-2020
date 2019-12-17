@@ -6,5 +6,39 @@
     <h1>Formulaire de création</h1>
 
 
+    {#
     {{ form(formProduct) }}
+    #}
+
+    {% if (formProduct.name.vars.errors | length > 0
+        or formProduct.description.vars.errors | length > 0
+        or formProduct.price.vars.errors | length > 0
+        or formProduct.isAvailable.vars.errors | length > 0)
+    %}
+    <div class="alert alert-danger">
+        {{ form_errors(formProduct.name) }}
+        {{ form_errors(formProduct.description) }}
+        {{ form_errors(formProduct.price) }}
+        {{ form_errors(formProduct.isAvailable) }}
+    </div>
+    {% endif %}
+
+    {{ form_start(formProduct) }}
+        <div>
+            {{ form_label(formProduct.name) }}
+            {{ form_widget(formProduct.name) }}
+        </div>
+        <div>
+            {{ form_label(formProduct.description) }}
+            {{ form_widget(formProduct.description) }}
+        </div>
+        <div>
+            {{ form_label(formProduct.price) }}
+            {{ form_widget(formProduct.price) }}
+        </div>
+        <div>
+            {{ form_label(formProduct.isAvailable) }}
+            {{ form_widget(formProduct.isAvailable) }}
+        </div>
+    {{ form_end(formProduct) }}
 {% endblock %}
