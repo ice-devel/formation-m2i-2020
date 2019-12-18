@@ -1,3 +1,10 @@
+Intro :
+По Хую мороз : po rouyou morosse
+Ты будешь водку?  : té boudiche vodkou
+Конечно братан : queniéchna bratane
+
+Comme tu voudwa maille ace liqinegue coque seuqueur mozeur feuquine sonne ove eu bitche
+
 # I - Présentation
 Framework PHP :
     - Cadre de travail : imposer une structure / façons de coder
@@ -89,7 +96,7 @@ Un controller est appelé si le composant routing fait un lien entre une
 url et un pattern défini dans la route. Une fonction d'un controller doit obligatoire
 retourner une objet Response.
 
-Les patterns peuvent des paramètres dynamiques : /article/read/{id}
+- Les patterns peuvent des paramètres dynamiques : /article/read/{id}
 Ici {id} est un paramètre d'URL qu'on va pouvoir dans le controller en injectant
 la variable PHP $id dans les paramètres de la fonction.
 
@@ -99,6 +106,12 @@ Du coup, il faut faire attention : si un pattern écrit en dur correspondant
         - /article/read/all
         Doit se trouver avant :
         - /article/read/{id}
+        
+- Les routes peuvent avoir des configurations particulières (voir controller RouteController) :
+    - requirements : indiquer des expressions régulières que les paramètres d'url doivent respecter
+    - defaults : donner des valeurs par défaut aux paramètres d'url (ce qui les rend facultatifs)
+    - methods : indiquer quels sont les types de méthodes htttp (GET, POST, etc.) sont autorisées pour la route
+    
 
 
     ## 2 - Templates
@@ -178,6 +191,25 @@ Par exemple dans un site e-commerce : produit, commande, utilisateur, etc.
 Dans un controller, on a besoin d'une entité, de l'entité manager de Doctrine.
 Il suffit ensuite d'appeler la méthode persist de l'em, puis flush pour envoyer en bdd.
 
+    ## Récupération des entités
+On récupère des entités en passant par les Repository (pour indiquer quel le type d'entité à récupérer).
+Il y a 4 méthodes par défaut : find(), findAll(), findBy(), findOneBy()
+    - find: pour récupérer une entité par son ID
+    - findAll: récupérer toutes les entités
+    - findOneBy: récupérer une entité en fonction de un ou plusieurs paramètres
+    - findBy: récupérér plusieurs entités en fonction de un ou plusieurs paramètres
+
+On peut ajouter des méthodes à un repository pour créer des requêtes personnalisées
+(voir AdvancedDoctrineController et ArticleRepository)
+On a un repo associé à chaque entité : on peut créer des fonctions dans ce repo.
+Il faut créer un "query builder", où on met nos critères spécifiques (where, group by, etc.).
+Gr$ace à ce query builder, on récupère la "query".
+Et sur la query, on récupère les résultats.
+
+Ensuite, dans un controller, on pourra récupérer le Repo concerné et appeler les nouvelles fonctions.
+    
+
+
     ## Formulaire
    
 Pour "hydrater" une entité, on passait avant par un formulaire html,
@@ -248,7 +280,13 @@ https://symfony.com/doc/current/reference/constraints.html
 La validation serveur est fortement conseillée pour tout dev digne de ce nom.
     
     ## Services
-Fonctionnement global : https://user.oc-static.com/files/420001_421000/420451.png
+Schéma fonctionnement global : https://user.oc-static.com/files/420001_421000/420451.png
+Un service est une classe offrant une fonctionnalité particulière,
+simplement déclaré comme étant un service. En architecture orientée service, on découpé ainsi mieux
+son code.
+    - Le service est accessible via le container de service
+    - Le container se charge pour nous d'instancier le service, ou le renvoie directement si il a été déjà instancié
+    - La dépendance des services à d'autres services est automatiquement gérée
     
    ## Exercice CRUD
    

@@ -47,4 +47,37 @@ class ArticleRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findByToday()
+    {
+        $now = new \DateTime();
+        $now->setTime(0,0,0);
+
+        // création de la requête :
+        $qb = $this->createQueryBuilder('a');
+        $qb->where("a.createdAt >= :now");
+        $qb->setParameter('now', $now);
+        $query = $qb->getQuery();
+
+        // exécution de la requête
+        $articles = $query->getResult();
+
+        return $articles;
+    }
+
+    public function getStatsGroupByName()
+    {
+        $qb = $this->createQueryBuilder('a');
+        $qb->select('a.name');
+        $qb->addSelect('COUNT(a) AS nb_articles');
+
+        $qb->groupBy('a.name');
+
+        // si on veut limiter les résultats :
+        // $qb->setMaxResults(1);
+
+        $query = $qb->getQuery();
+        $stats = $query->getResult();
+
+        return $stats;
+    }
 }

@@ -1,11 +1,37 @@
 security:
+    encoders:
+        # this internal class is used by Symfony to represent in-memory users
+        Symfony\Component\Security\Core\User\User: 'plaintext'
+
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory: { memory: null }
+        account_users:
+            memory:
+                users:
+                    admin: { password: 'pass', roles: ['ROLE_ADMIN'] }
+                    user: { password: 'user', roles: ['ROLE_USER'] }
+                    superadmin: { password: 'pass', roles: ['ROLE_SUPER_ADMIN'] }
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN]
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+
+        account:
+            pattern: ^/espace-perso/
+            anonymous: true
+            form_login:
+                provider: account_users
+                login_path: /espace-perso/login
+                check_path: /espace-perso/login-check
+                default_target_path: /espace-perso/login
+            logout:
+                path: /espace-perso/logout
+                target: /espace-perso/login
         main:
             anonymous: lazy
 
@@ -20,3 +46,6 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/espace-perso/login_check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/espace-perso/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/espace-perso/, roles: ROLE_USER }

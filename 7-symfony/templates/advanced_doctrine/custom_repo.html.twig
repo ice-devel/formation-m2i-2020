@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Repo custom{% endblock %}
+
+{% block body %}
+    <h1>Requêtes personnalisées</h1>
+
+    <h2>Stats</h2>
+    {% for stat in stats %}
+        <p>
+            Nom de l'article: {{ stat.name }}<br>
+            Nombre : {{ stat.nb_articles }}
+        </p>
+    {% endfor %}
+{% endblock %}
