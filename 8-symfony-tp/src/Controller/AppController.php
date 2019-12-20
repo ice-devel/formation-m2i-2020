@@ -2,6 +2,7 @@
     namespace App\Controller;
 
     use App\Entity\Character;
+    use App\Entity\Weapon;
     use App\Form\CharacterType;
     use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
     use Symfony\Component\HttpFoundation\Request;
@@ -82,6 +83,37 @@
             return $this->render('app/play.html.twig', [
                 'fCharacter' => $firstCharacter,
                 'sCharacter' => $secondCharacter
+            ]);
+        }
+
+        /**
+         * @Route("/testMTO", name="test_many_to_one")
+         */
+        public function testManyToOne() {
+            $character = new Character();
+            $character->setName('Proutman');
+            $character->setArmor(10);
+            $character->setDescription('Je pète donc je suinte');
+            $character->setHealth(100);
+            $character->setStrength(50);
+
+            $weapon = new Weapon();
+            $weapon->setName('Prout');
+            $weapon->setIsZoneDamaged(true);
+            $weapon->setStrengh(18);
+
+            $character->setWeapon($weapon);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($character);
+            // il faut informer doctrine qu'il y a une relationship à enregistrer
+            // ça peut se faire de façon explicite avec un autre persist
+            // $em->persist($weapon);
+            // ou alors on peut configurer l'entité Character pour déclencher en cascade l'enregistrement
+            $em->flush();
+
+            return $this->render('app/character_weapon.html.twig', [
+                'character' => $character
             ]);
         }
     }

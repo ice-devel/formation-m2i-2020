@@ -208,7 +208,13 @@ Et sur la query, on récupère les résultats.
 
 Ensuite, dans un controller, on pourra récupérer le Repo concerné et appeler les nouvelles fonctions.
     
+    ## Relation entre entités
+ManyToOne / OneToMany
+ManyToMany / ManyToMany (form embed): https://symfony.com/doc/current/form/form_collections.html
 
+    ## Cycle de vie des entités
+6 évenements lancés par doctrine avant et après insert, update, delete (voir entité Character)
+A configurer soit dans l'entité elle-même, soit dans un service qui écoute les événements doctrine (voir service EntityListener)
 
     ## Formulaire
    

@@ -1,5 +1,72 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ form(formCharacter) }}
+    {{ form_start(formCharacter) }}
+       {{ form_row(formCharacter.name) }}
+       {{ form_row(formCharacter.strength) }}
+       {{ form_row(formCharacter.health) }}
+       {{ form_row(formCharacter.armor) }}
+       {{ form_row(formCharacter.description) }}
+       {{ form_row(formCharacter.weapon) }}
+
+       {{ form_label(formCharacter.items) }}
+
+        <ul class="items" data-prototype="{{ form_widget(formCharacter.items.vars.prototype)|e('html_attr') }}">
+
+        </ul>
+    {{ form_end(formCharacter) }}
+
+    <a href="#" class="add_item">Ajouter un item</a>
+
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+
+    <script>
+        var $collectionHolder;
+
+        var $newLinkLi = $('.add_item');
+        jQuery(document).ready(function() {
+            // Get the ul that holds the collection of tags
+            $collectionHolder = $('ul.items');
+
+            // add the "add a tag" anchor and li to the tags ul
+            $collectionHolder.append($newLinkLi);
+
+            // count the current form inputs we have (e.g. 2), use that as the new
+            // index when inserting a new item (e.g. 2)
+            $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+            $(".add_item").on('click', function(e) {
+                // add a new tag form (see next code block)
+                addTagForm($collectionHolder, $newLinkLi);
+            });
+        });
+
+        function addTagForm($collectionHolder, $newLinkLi) {
+            // Get the data-prototype explained earlier
+            var prototype = $collectionHolder.data('prototype');
+
+            // get the new index
+            var index = $collectionHolder.data('index');
+
+            var newForm = prototype;
+            // You need this only if you didn't set 'label' => false in your tags field in TaskType
+            // Replace '__name__label__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            // newForm = newForm.replace(/__name__label__/g, index);
+
+            // Replace '__name__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            newForm = newForm.replace(/__name__/g, index);
+
+            // increase the index with one for the next item
+            $collectionHolder.data('index', index + 1);
+
+            // Display the form in the page in an li, before the "Add a tag" link li
+            var $newFormLi = $('<li></li>').append(newForm);
+            $newLinkLi.before($newFormLi);
+        }
+    </script>
 {% endblock %}

@@ -2,11 +2,15 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CharacterRepository")
  * @ORM\Table(name="app_character")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Character
 {
@@ -41,6 +45,26 @@ class Character
      * @ORM\Column(type="text")
      */
     private $description;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Weapon", inversedBy="characters", cascade={"all"})
+     */
+    private $weapon;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Item", inversedBy="characters", cascade={"all"})
+     */
+    private $items;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    public function __construct()
+    {
+        $this->items = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -126,6 +150,103 @@ class Character
 
         // on peut retourner $this, si il n'y a pas de valeurs particulières à retourner
         // (cela permettra de "chainer" les fonctions)
+        return $this;
+    }
+
+    public function getWeapon(): ?Weapon
+    {
+        return $this->weapon;
+    }
+
+    public function setWeapon(?Weapon $weapon): self
+    {
+        $this->weapon = $weapon;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Item[]
+     */
+    public function getItems(): Collection
+    {
+        return $this->items;
+    }
+
+    public function addItem(Item $item): self
+    {
+        if (!$this->items->contains($item)) {
+            $this->items[] = $item;
+        }
+
+        return $this;
+    }
+
+    public function removeItem(Item $item): self
+    {
+        if ($this->items->contains($item)) {
+            $this->items->removeElement($item);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist(LifecycleEventArgs $args) {
+        $now = new \DateTime();
+        $this->setCreatedAt($now);
+    }
+
+
+    /**
+     * @ORM\PostPersist
+     */
+    public function postPersist(LifecycleEventArgs $args) {
+
+    }
+
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate(LifecycleEventArgs $args) {
+
+    }
+
+
+    /**
+     * @ORM\PostUpdate
+     */
+    public function postUpdate(LifecycleEventArgs $args) {
+
+    }
+
+    /**
+     * @ORM\PreRemove
+     */
+    public function preRemove(LifecycleEventArgs $args) {
+
+    }
+
+
+    /**
+     * @ORM\PostRemove
+     */
+    public function postRemove(LifecycleEventArgs $args) {
+
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
         return $this;
     }
 }
