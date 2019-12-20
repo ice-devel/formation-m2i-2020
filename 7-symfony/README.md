@@ -139,6 +139,9 @@ les clés seront les noms de variables à utiliser dans le template.
     utilise la fonction twig path(), dont le premier paramètre est le nom de 
     la route dont on veut l'URL
     
+- Inclure des assets (fichiers css, js, images se trouvatn dans le dossier public) :
+Voir la fonction asset
+
 - Dans un template, on peut écrire {{ objet.attribut }} :
     Précisions sur la syntaxe{{ objet.attribut }}
     Le fonctionnement de la syntaxe{{ objet.attribut }} est un peu plus complexe qu'elle n'en a l'air.
@@ -273,6 +276,10 @@ form_label : pour afficher uniquement le label du champ
 form_widget : pour afficher uniquement le widget (input, textarea, select) du champ
 form_errrors : pour afficher uniquement l'erreur serveur du champ
 
+    ## Upload de fichier via formulaire :
+Voir la doc symfony ici :
+https://symfony.com/doc/current/controller/upload_file.html
+    
     ## Validation des entités
 Le service validator de symfony nous permet de valider des entités :
 est-ce que les données sont valides ?

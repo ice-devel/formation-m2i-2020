@@ -2,17 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="11ddecbc-aab1-42df-97d7-a5807e27ab3a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Listener/EntityListener.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../7-symfony/.idea/7-symfony.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../7-symfony/.idea/7-symfony.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/FileUploader.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/app/character_image.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../7-symfony/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../7-symfony/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../7-symfony/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../7-symfony/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/8-symfony-tp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/8-symfony-tp.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/twig.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/twig.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/AppController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AppController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Character.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Character.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Form/CharacterType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/CharacterType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/app/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/app/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +30,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -155,6 +157,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/app" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
@@ -191,7 +194,7 @@
       <workItem from="1576485537641" duration="13411000" />
       <workItem from="1576833089559" duration="892000" />
       <workItem from="1576834034745" duration="128000" />
-      <workItem from="1576834422174" duration="7708000" />
+      <workItem from="1576834422174" duration="13728000" />
     </task>
     <servers />
   </component>
@@ -199,9 +202,13 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="510" y="228" key="NewPhpClassDialog" timestamp="1576841991725">
+    <state x="510" y="228" key="NewPhpClassDialog" timestamp="1576852293205">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="510" y="228" key="NewPhpClassDialog/0.0.1536.824@0.0.1536.824" timestamp="1576841991725" />
+    <state x="510" y="228" key="NewPhpClassDialog/0.0.1536.824@0.0.1536.824" timestamp="1576852293205" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1576852352190">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1576852352190" />
   </component>
 </project>

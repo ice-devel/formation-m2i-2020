@@ -45,13 +45,6 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>routing</find>
-      <find>formul</find>
-      <find>repo</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -230,7 +223,7 @@
       <workItem from="1576832123406" duration="1384000" />
       <workItem from="1576834030697" duration="266000" />
       <workItem from="1576834328037" duration="52000" />
-      <workItem from="1576834409642" duration="4037000" />
+      <workItem from="1576834409642" duration="4748000" />
     </task>
     <task id="LOCAL-00001" summary="Controller + Twig">
       <created>1575906688596</created>

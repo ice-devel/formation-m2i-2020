@@ -4,6 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    characters_directory: '%kernel.project_dir%/public/uploads/characters'
+    characters_web_directory: '/uploads/characters/'
 
 services:
     # default configuration for services in *this* file
@@ -31,4 +33,9 @@ services:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: preUpdate }
             - { name: doctrine.event_listener, event: postPersist }
+            # et les 3 autres events... (postPersist, postUpdate, preRemove)
+
+    App\Service\FileUploader:
+        arguments:
+            $targetDirectory: '%characters_directory%'
 

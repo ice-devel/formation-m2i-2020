@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    Nom personnage : {{ character.name }}<br>
+    Force personnage : {{ character.strength }}<br>
+    <br>
+    Nom de l'arme utilisée : {{ character.weapon.name }}<br>
+    Force de l'arme utilisée : {{ character.weapon.strengh }}
+    <br>
+    Avatar :
+    <img src="{{ asset(characters_web_directory ~ character.avatarFilename) }}" alt="" />
+
+{% endblock %}

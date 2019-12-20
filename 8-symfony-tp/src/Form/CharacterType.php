@@ -7,11 +7,13 @@ use App\Entity\Weapon;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class CharacterType extends AbstractType
 {
@@ -33,6 +35,25 @@ class CharacterType extends AbstractType
             ->add('items', CollectionType::class, [
                 'entry_type' => ItemType::class,
                 'allow_add' => true,
+            ])
+
+            ->add('avatar', FileType::class, [
+                'mapped' => false,
+                'required' => false,
+
+                // unmapped fields can't define their validation using annotations
+                // in the associated entity, so you can use the PHP constraint classes
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                        ],
+                        'maxSizeMessage' => 'Votre photo doit faire max. 1M.',
+                        'mimeTypesMessage' => 'Veuillez choisir un fichier .jpg ou .png',
+                    ])
+                ]
             ])
 
             ->add('submit', SubmitType::class, ['label' => 'Valider le personnage'])

@@ -4,6 +4,7 @@
     use App\Entity\Character;
     use App\Entity\Weapon;
     use App\Form\CharacterType;
+    use App\Service\FileUploader;
     use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
     use Symfony\Component\HttpFoundation\Request;
     use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +15,7 @@
          /**
           * @Route("/create", name="create_character")
           */
-         public function createCharacter(Request $request) {
+         public function createCharacter(Request $request, FileUploader $fileUploader) {
              // nouvelle instance qu'on va lier à un formulaire
              $character = new Character();
 
@@ -28,6 +29,10 @@
              if ($form->isSubmitted()) {
                  // si le formulaire est valide
                  if ($form->isValid()) {
+                     // upload de la photo avatar
+                     $avatarFile = $form['avatar']->getData();
+                     $filename = $fileUploader->upload($avatarFile);
+                     $character->setAvatarFilename($filename);
                      // enregistrement en bdd
                      $em = $this->getDoctrine()->getManager();
                      $em->persist($character);
@@ -113,6 +118,19 @@
             $em->flush();
 
             return $this->render('app/character_weapon.html.twig', [
+                'character' => $character
+            ]);
+        }
+
+        /**
+         * @Route("/display-character/{id}", name="display")
+         */
+        public function display($id) {
+            $em = $this->getDoctrine()->getManager();
+            $character = $em->getRepository('App:Character')->find($id);
+
+
+            return $this->render('app/character_image.html.twig', [
                 'character' => $character
             ]);
         }
